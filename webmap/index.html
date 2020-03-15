@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/Control.FullScreen.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title>
+Mappa di diffusione del COVID-19 sul territorio italiano
+		</title>
+	</head>
+	<body>
+        <div id="map">
+        
+		<div id = "sidebar">
+		<div class = "sidebar-content">
+		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento alle ore 19:00 del 14/03/2020)</h4>  
+		<iframe src="chart1.html" width="100%" height="50%" frameborder="0"></iframe>
+		<iframe src="chart2.html" width="100%" height="50%" frameborder="0"></iframe>
+		<iframe src="chart3.html" width="100%" height="50%" frameborder="0"></iframe>
+		<iframe src="chart4.html" width="100%" height="80%" frameborder="0"></iframe>
+		</div>
+		</div>
+<div id="info">
+	<button type="button" class="btn btn-info" id="sidebarCollapse">
+         <i class="fa fa-bar-chart"></i>
+         <span>Mostra i grafici</span>
+    </button>
+</div>
+</div>
+        <script src="js/leaflet.js"></script>
+		<script src="js/Control.FullScreen.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+		<script src="js/leaflet.ajax.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="dati/casi_totali.js"></script>
+		<script src="dati/deceduti.js"></script>
+		<script src="dati/positivi.js"></script>
+		<script src="dati/guariti.js"></script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+			$("#wrapper").toggleClass("toggle");
+            $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            });
+        });
+		</script>
+        <script>
+		var map = L.map('map', {
+            zoomControl:true, maxZoom:19, minZoom:6,
+			fullscreenControl: true,
+			fullscreenControlOptions: {
+				position: 'topright'}
+        });
+		map.setView([42.33,8.99], 6);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('powered by <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a>; Grafici realizzati con <a href="https://www.r-project.org/">R</a>; dati <a href="https://github.com/pcm-dpc/COVID-19"target="_blank">COVID-19</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        };
+		
+		var CartoDB_DarkMatterNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+		subdomains: 'abcd',
+		maxZoom: 19
+		}).addTo(map);
+		
+		var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		maxZoom: 19
+		});
+
+		var baseLayers = {
+		"Carto_DB": CartoDB_DarkMatterNoLabels,
+		"OSM": OSM
+		};
+		
+		
+		//totale casi//
+		function getColor1(d) {
+		return d > 5000 ? '#800026' :
+           d > 1000  ? '#BD0026' :
+           d > 500  ? '#E31A1C' :
+           d > 200  ? '#FC4E2A' :
+           d > 100  ? '#FD8D3C' :
+           d > 50  ? '#FEB24C' :
+           d > 20   ? '#FED976' :
+           d > 10    ? '#FFEDA0':
+		   d > 0     ? '#ffffcc':
+		   '#848484';};
+					  
+		function style_casi_totali(feature) {
+		return {
+        fillColor: getColor1(feature.properties.totale_casi),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 1
+		};
+		};
+		
+		var casi_totali = new L.geoJson(casi_totali, {
+		style: style_casi_totali,
+		onEachFeature: function (feature, layer) {
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale casi: <b>"+feature.properties.totale_casi);
+		}
+		});
+		map.addLayer(casi_totali);
+		
+		
+		//positivi attuali//
+		function getColor2(d) {
+		return d > 5000 ? '#800026' :
+           d > 1000  ? '#BD0026' :
+           d > 500  ? '#E31A1C' :
+           d > 200  ? '#FC4E2A' :
+           d > 100  ? '#FD8D3C' :
+           d > 50  ? '#FEB24C' :
+           d > 20   ? '#FED976' :
+           d > 10    ? '#FFEDA0':
+		   d > 0     ? '#ffffcc':
+		   '#848484';};
+					  
+		function style_positivi(feature) {
+		return {
+        fillColor: getColor1(feature.properties.totale_attualmente_positivi),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 1
+		};
+		};
+		
+		var positivi = new L.geoJson(positivi, {
+		style: style_positivi,
+		onEachFeature: function (feature, layer) {
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Positivi attuali: <b>"+feature.properties.totale_attualmente_positivi);
+		}
+		});
+		
+		// decessi//
+		function getColor3(d) {
+		return d > 5000 ? '#49006a' :
+           d > 1000  ? '#7a0177' :
+           d > 500  ? '#ae017e' :
+           d > 200  ? '#dd3497' :
+           d > 100  ? '#f768a1' :
+           d > 50  ? '#fa9fb5' :
+           d > 20   ? '#fcc5c0' :
+           d > 10    ? '#fde0dd':
+		   d >= 0     ? '#fff7f3':
+		   '#848484';};
+		
+		function style_deceduti(feature) {
+		return {
+        fillColor: getColor3(feature.properties.deceduti),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 1
+		};
+		};
+		
+		var deceduti = new L.geoJson(deceduti, {
+		style: style_deceduti,
+		onEachFeature: function (feature, layer) {
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale decessi: <b>"+feature.properties.deceduti);
+		}
+		});
+		
+		// guariti //
+		function getColor4(d) {
+		return d > 5000 ? '#00441b' :
+           d > 1000  ? '#006d2c' :
+           d > 500  ? '#238b45' :
+           d > 200  ? '#41ab5d' :
+           d > 100  ? '#74c476' :
+           d > 50  ? '#a1d99b' :
+           d > 20   ? '#c7e9c0' :
+           d > 10    ? '#e5f5e0':
+		   d >= 0     ? '#f7fcf5':
+		   '#848484';};
+		
+		function style_guariti(feature) {
+		return {
+        fillColor: getColor4(feature.properties.dimessi_guariti),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 1
+		};
+		};
+		
+		var guariti = new L.geoJson(guariti, {
+		style: style_guariti,
+		onEachFeature: function (feature, layer) {
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale guariti: <b>"+feature.properties.dimessi_guariti);
+		}
+		});
+		
+		// overaly //
+		var overlayMaps = {
+		"Casi totali": casi_totali,
+		"Positivi attuali": positivi,
+		"Deceduti": deceduti,
+		"Guariti dimessi":guariti
+		};
+		
+L.control.layers(baseLayers,overlayMaps,{collapsed:false}).addTo(map);
+
+
+	</script>
+	</body>

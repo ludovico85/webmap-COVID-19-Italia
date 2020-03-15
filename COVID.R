@@ -154,11 +154,7 @@ htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
 #############################################################################
 ### creazione dati di base per le mappe regionali da utilizzare in leaflet###
 #############################################################################
-library(raster)
 library(rgdal)
-library(rgeos)
-library(geojsonR)
-library(rmapshaper)
 library(sp)
 
 

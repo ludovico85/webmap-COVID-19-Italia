@@ -21,6 +21,9 @@ custom_theme.R: script per la tematizzazione dei grafici
 regioni.gpkg: GeopAckage contenente i limiti amministrativi
 webmap: cartella con le librerie e script necessari per la generazione della webmap
 
+
+____
+
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascrip per le mappe da utilizzare in leaflet. L'unica operazione da fare consiste nel dichiarare all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe la variabile.
 Esempio di output di R
 
@@ -36,7 +39,8 @@ Esempio di output di R
 </code>
 <br>
 Modifica necessaria
-
+<br>
+<br>
 <code>
 var nome_variabile = 
 {
@@ -48,6 +52,7 @@ var nome_variabile =
 ]
 }
 </code>
+<br>
 <br>
 
 <p><a href="https://github.com/ludovico85/webmap-COVID-19-Italia/blob/master/License.txt"><img src="https://camo.githubusercontent.com/b9e61d4d8db6ffad34c4367d2fa7089993491ce7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4372656174697665253230436f6d6d6f6e732532304174747269627574696f6e253230342e30253230496e7465726e6174696f6e616c2d626c7565" alt="GitHub license" data-canonical-src="https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue" style="max-width:100%;"></a>

@@ -31,7 +31,7 @@ webmap: cartella con le librerie e script necessari per la generazione della web
 
 ____
 
-Lo script di R è completamente automatizzato per creare i grafici e gli script javascrip per le mappe da utilizzare in leaflet. L'unica operazione da fare consiste nel dichiarare all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe la variabile.
+Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet. L'unica operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile.
 Esempio di output di R
 
 <code>

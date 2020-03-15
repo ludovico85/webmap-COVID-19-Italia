@@ -23,10 +23,10 @@ I dati utilizzati sono:
 - dati sulla diffusione del COVID-19 https://github.com/pcm-dpc/COVID-19
 
 Nel REPO sono presenti:
-COVID.R: script di R per la generazione dei grafici e delle mappe
-custom_theme.R: script per la tematizzazione dei grafici
-regioni.gpkg: GeopAckage contenente i limiti amministrativi
-webmap: cartella con le librerie e script necessari per la generazione della webmap
+- COVID.R: script di R per la generazione dei grafici e delle mappe
+- custom_theme.R: script per la tematizzazione dei grafici
+- regioni.gpkg: GeoPackage contenente i limiti amministrativi
+- webmap: cartella con le librerie e script necessari per la generazione della webmap
 
 
 ____

@@ -13,6 +13,10 @@ L'intera applicazione è stata sviluppata utilizzando sowftware OpenSource:
 - <a href="https://qgis.org/it/site/" target="_blank">QGIS</a> per il trattamento dei dati territoriali
 - <a href="https://leafletjs.com/" target="_blank">Leaflet</a> per la creazione della webmap
 - <a href="https://www.r-project.org/" target="_blank">R</a> per la creazione dei grafici dinamici e interattivi
+  - <a href="https://cran.r-project.org/web/packages/RCurl/index.html" target="_blank">RCurl</a> per lo scaricamento dei dati dal repository
+  - <a href="https://cran.r-project.org/web/packages/tidyr/index.html" target="_blank">tidyr</a> e <a href="https://cran.r-project.org/web/packages/reshape2/index.html" target="_blank">Reshape2</a> per la gestione delle tabelle e creazione dei dataframe
+  - <a href="https://cran.r-project.org/web/packages/plotly/index.html" target="_blank">plotly</a> e <a href="https://cran.r-project.org/web/packages/ggplot2/index.html" target="_blank">ggplot2</a> per la creazione dei grafici
+   - <a href="https://cran.r-project.org/web/packages/rgdal/index.html" target="_blank">rgdal</a> e <a href="https://cran.r-project.org/web/packages/sp/index.html" target="_blank">sp</a> per la manipolazione dei dati geografici e la creazione delle basi dati
 
 I dati utilizzati sono:
 - limiti amministrativi ISTAT modificati in QGIS https://www.istat.it/it/archivio/222527
@@ -40,6 +44,7 @@ Esempio di output di R
 ]
 }
 </code>
+<br>
 <br>
 Modifica necessaria
 <br>

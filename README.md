@@ -6,7 +6,7 @@ Webmap con statistiche sulla diffusione del COVID-19 sul territorio nazionale
 
 <img src="https://www.lezionigis.it/wp-content/uploads/2020/03/Cattura.png" height="100%" width="100%">
 
-La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://www.lezionigis.it/mappa-di-diffusione-del-covid-19-sul-territorio-italiano/
+La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://www.lezionigis.it/mappa-di-diffusione-del-covid-19-sul-territorio-italiano/ ,
 mostra le mappe e i grafici di diffusione del COVID-19 sul territorio nazionale.
 L'intera applicazione è stata sviluppata utilizzando sowftware OpenSource:
 

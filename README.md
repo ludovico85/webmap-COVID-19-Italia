@@ -1,6 +1,9 @@
 # webmap-COVID-19-Italia
 Webmap con statistiche sulla diffusione del COVID-19 sul territorio nazionale
 
+<p><a href="https://github.com/ludovico85/webmap-COVID-19-Italia/blob/master/License.txt"><img src="https://camo.githubusercontent.com/b9e61d4d8db6ffad34c4367d2fa7089993491ce7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4372656174697665253230436f6d6d6f6e732532304174747269627574696f6e253230342e30253230496e7465726e6174696f6e616c2d626c7565" alt="GitHub license" data-canonical-src="https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue" style="max-width:100%;"></a>
+<a href="https://github.com/ludovico85/webmap-COVID-19-Italia/commits/master"><img src="https://camo.githubusercontent.com/f5f7431cfccb2ebed2649bb2e2ab87ddc4659461/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6173742d636f6d6d69742f70636d2d6470632f434f5649442d3139" alt="GitHub commit" data-canonical-src="https://img.shields.io/github/last-commit/pcm-dpc/COVID-19" style="max-width:100%;"></a></p>
+
 <img src="https://www.lezionigis.it/wp-content/uploads/2020/03/Cattura.png" height="100%" width="100%">
 
 La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://www.lezionigis.it/mappa-di-diffusione-del-covid-19-sul-territorio-italiano/
@@ -54,7 +57,4 @@ var nome_variabile =
 </code>
 <br>
 <br>
-
-<p><a href="https://github.com/ludovico85/webmap-COVID-19-Italia/blob/master/License.txt"><img src="https://camo.githubusercontent.com/b9e61d4d8db6ffad34c4367d2fa7089993491ce7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4372656174697665253230436f6d6d6f6e732532304174747269627574696f6e253230342e30253230496e7465726e6174696f6e616c2d626c7565" alt="GitHub license" data-canonical-src="https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue" style="max-width:100%;"></a>
-<a href="https://github.com/ludovico85/webmap-COVID-19-Italia/commits/master"><img src="https://camo.githubusercontent.com/f5f7431cfccb2ebed2649bb2e2ab87ddc4659461/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6173742d636f6d6d69742f70636d2d6470632f434f5649442d3139" alt="GitHub commit" data-canonical-src="https://img.shields.io/github/last-commit/pcm-dpc/COVID-19" style="max-width:100%;"></a></p>
 

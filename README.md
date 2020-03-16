@@ -20,6 +20,7 @@ L'intera applicazione è stata sviluppata utilizzando sowftware OpenSource:
 
 I dati utilizzati sono:
 - limiti amministrativi ISTAT modificati in QGIS https://www.istat.it/it/archivio/222527
+- dati sulla popolazione http://dati.istat.it/Index.aspx?DataSetCode=DCIS_POPRES1#
 - dati sulla diffusione del COVID-19 https://github.com/pcm-dpc/COVID-19
 
 Nel REPO sono presenti:

@@ -29,7 +29,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
         
 		<div id = "sidebar">
 		<div class = "sidebar-content">
-		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento alle ore 19:00 del 14/03/2020)</h4>  
+		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento alle ore 19:00 del 15/03/2020)</h4>  
 		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart3.html" width="100%" height="50%" frameborder="0"></iframe>
@@ -126,7 +126,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		var casi_totali = new L.geoJson(casi_totali, {
 		style: style_casi_totali,
 		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale casi: <b>"+feature.properties.totale_casi);
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
 		}
 		});
 		map.addLayer(casi_totali);
@@ -190,7 +190,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		var deceduti = new L.geoJson(deceduti, {
 		style: style_deceduti,
 		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale decessi: <b>"+feature.properties.deceduti);
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale decessi: <b>"+feature.properties.deceduti+"</b><br><hr style='border-top: dotted 2px;'/>Tasso di mortalità :<b>"+feature.properties.tasso_mortalita+"%");
 		}
 		});
 		

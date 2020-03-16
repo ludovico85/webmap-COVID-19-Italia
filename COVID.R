@@ -16,7 +16,8 @@ andamento_nazionale<-separate(data = andamento_nazionale, col = data, into = c("
 andamento_nazionale$data<-as.Date(andamento_nazionale$data)
 
 #####################################################################
-### chart 1 grafico sui casi totali e i casi attualemtne positivi ###
+### chart 1 grafico sui casi totali e i casi attualemtne positivi####
+################# N.B. aggiornare la data############################
 #####################################################################
 
 ### lettura e formattazione dei dati ###
@@ -31,7 +32,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-14')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-15')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -46,7 +47,7 @@ l <- list(
     borderwidth = 0,
     orientation = "h",
     x = 0.25,
-    y = -0.2)
+    y = -0.25)
 
 ### salvataggio del grafico in html utilizzando la libreria plotly###
 chart1<-ggplotly(chart1) %>%
@@ -57,6 +58,7 @@ htmlwidgets::saveWidget(chart1, "chart1.html",  background = "rgba(0,0,0,0.0)")
 
 ###########################################################
 #### chart 2 grafico sul numero di guariti e di decessi ###
+################# N.B. aggiornare la data##################
 ###########################################################
 
 data_chart2<-andamento_nazionale[, c("data", "dimessi_guariti", "deceduti")]
@@ -69,7 +71,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-14')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -81,6 +83,7 @@ htmlwidgets::saveWidget(chart2, "chart2.html",  background = "rgba(0,0,0,0.0)")
 
 ###########################################################
 #### chart 3 grafico sul numero di attualemnte positivi ###
+################# N.B. aggiornare la data##################
 ###########################################################
 
 data_chart3<-andamento_nazionale[, c("data", "nuovi_attualmente_positivi")]
@@ -92,7 +95,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=nuovi_casi, group=1)) +
   geom_point(shape = 21, size = 3, stroke = 0.5, aes(color="nuovi casi"))+
   labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "3 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-14')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
   scale_color_manual(name = NA, breaks = "nuovi casi", values = "#DEFA05")+theme_map()%+replace%
   theme(plot.margin = margin(0, -1, 0, -2, "cm"))
 
@@ -114,6 +117,7 @@ regioni$data<-as.Date(regioni$data)
 
 #############################################################
 #### chart 4 grafico sul numero di casi totali er regione ###
+################# N.B. aggiornare la data####################
 #############################################################
 
 data_chart4<-regioni
@@ -130,7 +134,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=(totale_casi), color=denominazion
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-14')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -153,6 +157,7 @@ htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
 
 #############################################################################
 ### creazione dati di base per le mappe regionali da utilizzare in leaflet###
+##################### N.B. aggiornare la data################################
 #############################################################################
 library(rgdal)
 library(sp)
@@ -161,7 +166,7 @@ library(sp)
 ### lettura e formttazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-03-14`
+regioni_dati<-regioni_dati$`2020-03-15`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 ### selezione dei datatset di interesse ###
@@ -171,13 +176,18 @@ guariti<-regioni_dati[, c(5, 14)]
 attualmente_positivi<-regioni_dati[, c(5, 12)]
 
 ### caricamento del file vettoriale delle regioni ###
-regioni_geo<-readOGR("regioni.gpkg", "regioni")
+regioni_geo<-readOGR("regioni.gpkg", "regioni_popolazione")
 
 ### join tra il dato vettoriale e gli attributi ###
 regioni_geo_casi_totali<-sp::merge(regioni_geo, casi_totali, by='DEN_REG')
-regioni_geo_deceduti<-sp::merge(regioni_geo, deceduti, by='DEN_REG')
+regioni_geo_deceduti<-sp::merge(regioni_geo, c(deceduti, casi_totali), by='DEN_REG')
 regioni_geo_guariti<-sp::merge(regioni_geo, guariti, by='DEN_REG')
 regioni_geo_positivi<-sp::merge(regioni_geo, attualmente_positivi, by='DEN_REG')
+
+### nuovi dati su incidenza dei contagi su popolazione totale residente e tasso di mortalità per regionale ###
+regioni_geo_casi_totali@data$incidenza_pop_tot<-round((regioni_geo_casi_totali@data$totale_casi/regioni_geo_casi_totali@data$popolazione_ISTAT_2019_POP_TOT*10000), 2)
+regioni_geo_deceduti@data$tasso_mortalita<-round((regioni_geo_deceduti@data$deceduti*100/regioni_geo_deceduti@data$totale_casi), 2)
+
 
 ### formattazione per leaflet ###
 regioni_geo_casi_totali@data$totale_casi<-as.character(regioni_geo_casi_totali@data$totale_casi)

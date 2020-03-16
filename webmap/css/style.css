@@ -263,10 +263,18 @@ a.article:hover {
     }
     #sidebar.active {
         margin-left: 0;
-		width:30%;
+		width:100%;
 		font-size: 8px;
 		height: 100%;
     }
+	
+	#sidebar.active .sidebar-content {
+        margin-left: 0;
+		width:100%;
+		font-size: 8px;
+		height: 100%;
+    }
+	
     #sidebarCollapse span {
         display: none;
     }

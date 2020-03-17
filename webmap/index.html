@@ -91,7 +91,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
         });
 		map.setView([42.33,8.99], 6);
         var hash = new L.Hash(map);
-        map.attributionControl.addAttribution('powered by <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a>; Grafici realizzati con <a href="https://www.r-project.org/">R</a>; dati <a href="https://github.com/pcm-dpc/COVID-19"target="_blank">COVID-19</a>');
+        map.attributionControl.addAttribution('powered by <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a>; Repository del progetto <a href="https://github.com/ludovico85/webmap-COVID-19-Italia" target="_blank"><i class="fa fa-github"></i></a>; Grafici realizzati con <a href="https://www.r-project.org/">R</a>; dati a cura del Dipartimento della Potezione Civile <a href="https://github.com/pcm-dpc/COVID-19"target="_blank">COVID-19</a>');
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             map.setMaxBounds(map.getBounds());

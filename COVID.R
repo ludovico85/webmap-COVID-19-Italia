@@ -4,7 +4,12 @@ library(ggplot2)
 library(tidyr)
 library(plotly)
 library(reshape2)
+library(rjson)
 source("custom_theme.R") ##funzione per customizzare l'output di ggplot2 ##
+
+
+url3<-getURL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv")
+
 
 ########################################################################################
 ### lettura dei dati andamento nazionale direttamente dal repo github e formattazione###
@@ -30,9 +35,9 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   ggtitle("Casi totali e attualmente positivi")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-15')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-16')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -69,9 +74,9 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   ggtitle("Guariti VS deceduti")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-16')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -93,9 +98,9 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=nuovi_casi, group=1)) +
   ggtitle("Nuovi casi")+
   geom_line(aes(color="nuovi casi"))+
   geom_point(shape = 21, size = 3, stroke = 0.5, aes(color="nuovi casi"))+
-  labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "3 day",
+  labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "4 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-16')))+
   scale_color_manual(name = NA, breaks = "nuovi casi", values = "#DEFA05")+theme_map()%+replace%
   theme(plot.margin = margin(0, -1, 0, -2, "cm"))
 
@@ -116,7 +121,7 @@ regioni<-separate(data = regioni, col = data, into = c("data", "ora"), sep = "\\
 regioni$data<-as.Date(regioni$data)
 
 #############################################################
-#### chart 4 grafico sul numero di casi totali er regione ###
+### chart 4 grafico sul numero di casi totali per regione ###
 ################# N.B. aggiornare la data####################
 #############################################################
 
@@ -132,9 +137,9 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=(totale_casi), color=denominazion
   ggtitle("Casi totali per regione")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "3 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-16')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -155,6 +160,44 @@ chart4<-ggplotly(chart4) %>%
 
 htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
 
+#############################################################
+#### chart 5 grafico sul numero di tamponi e casi totali  ###
+################# N.B. aggiornare la data####################
+#############################################################
+
+data_chart5<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
+colnames(data_chart5)<-c("data", "casi totali", "tamponi")
+data_chart5<-melt(data_chart5, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
+
+
+chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
+  ggtitle("Tamponi giornalieri")+
+  geom_bar(stat="identity", position=position_dodge())+
+  labs(x = "data", y = " ")+scale_x_date(date_breaks = "4 day",
+                                                            date_labels = "%b %d",
+                                                            limits = as.Date(c('2020-02-24','2020-03-16')))+
+    #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
+    theme_map()
+
+  l <- list(
+    font = list(
+      family = "sans-serif",
+      size = 12,
+      color = "white"),
+    bgcolor = NA,
+    bordercolor = NA,
+    borderwidth = 0,
+    orientation = "h",
+    x = 0.25,
+    y = -0.2)
+
+chart5<-ggplotly(chart5) %>%
+  layout(legend = l)
+
+htmlwidgets::saveWidget(chart5, "chart5.html",  background = "rgba(0,0,0,0.0)")
+
+
+
 #############################################################################
 ### creazione dati di base per le mappe regionali da utilizzare in leaflet###
 ##################### N.B. aggiornare la data################################
@@ -166,7 +209,7 @@ library(sp)
 ### lettura e formttazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-03-15`
+regioni_dati<-regioni_dati$`2020-03-16`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 ### selezione dei datatset di interesse ###

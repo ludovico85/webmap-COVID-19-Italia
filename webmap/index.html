@@ -32,7 +32,11 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
 		</div>
 		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
-		<h1 style="text-align:center; color:#31B0D5";><div class="mystat1"></div></h1> 
+		<h1 style="text-align:center; color:#31B0D5";><span class="text1"></span><span class="text1a"></span></h1>
+		<h1 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h1> 
+		<h1 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h1> 
+		<h1 style="text-align:center; color:#31B0D5";><span class="text4"></span></h1> 
+
 		<!--<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>-->
 		
 		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
@@ -77,13 +81,22 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
         var data = `${dati[25].data})`;
-		var text = `Casi totali: ${dati[25].totale_casi}<br>
-                    Deceduti: ${dati[25].deceduti}<br>
-					Guariti: ${dati[25].dimessi_guariti}<br>
-					Nuovi positivi: ${dati[25].nuovi_attualmente_positivi}`;
-		console.log(text);
+		var text = `Casi totali: ${dati[25].totale_casi}`;
+        var text2 =`Deceduti: ${dati[25].deceduti}`;
+		var text3 =`Guariti: ${dati[25].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[25].nuovi_attualmente_positivi}`;
+		var text1a = ` (+${dati[25].totale_casi-dati[24].totale_casi})`;	
+		var text2a = ` (+${dati[25].deceduti-dati[24].deceduti})`;
+		var text3a = ` (+${dati[25].dimessi_guariti-dati[24].dimessi_guariti})`;		
+		console.log(text2);
         $(".mystat").html(data);
-		$(".mystat1").html(text);
+		$(".text1").html(text);
+		$(".text2").html(text2);
+		$(".text3").html(text3);
+		$(".text4").html(text4);
+		$(".text1a").html(text1a);
+		$(".text2a").html(text2a);
+		$(".text3a").html(text3a);
 		});
 		</script>
         <script>

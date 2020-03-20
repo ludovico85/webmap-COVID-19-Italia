@@ -28,9 +28,12 @@ Mappa di diffusione del COVID-19 sul territorio italiano
         <div id="map">
 		<div id = "sidebar">
 		<div class = "sidebar-content">
+		<div id = "logo">
+		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
+		</div>
 		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
 		<h1 style="text-align:center; color:#31B0D5";><div class="mystat1"></div></h1> 
-		<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>
+		<!--<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>-->
 		
 		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
@@ -62,6 +65,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<script src="dati/deceduti.js"></script>
 		<script src="dati/positivi.js"></script>
 		<script src="dati/guariti.js"></script>
+		<script src="dati/casi_totali_prov.js"></script>
 		<script type="text/javascript">
         $(document).ready(function () {
 			$("#wrapper").toggleClass("toggle");
@@ -72,11 +76,11 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[23].data})`;
-		var text = `Casi totali: ${dati[23].totale_casi}<br>
-                    Deceduti: ${dati[23].deceduti}<br>
-					Guariti: ${dati[23].dimessi_guariti}<br>
-					Nuovi positivi: ${dati[23].nuovi_attualmente_positivi}`
+        var data = `${dati[24].data})`;
+		var text = `Casi totali: ${dati[24].totale_casi}<br>
+                    Deceduti: ${dati[24].deceduti}<br>
+					Guariti: ${dati[24].dimessi_guariti}<br>
+					Nuovi positivi: ${dati[24].nuovi_attualmente_positivi}`;
 		console.log(text);
         $(".mystat").html(data);
 		$(".mystat1").html(text);
@@ -116,15 +120,15 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		//totale casi//
 		function getColor1(d) {
-		return d > 10000 ? '#800026' :
-           d > 5000  ? '#BD0026' :
-           d > 1000  ? '#E31A1C' :
-           d > 500  ? '#FC4E2A' :
-           d > 200  ? '#FD8D3C' :
-           d > 100  ? '#FEB24C' :
-           d > 50   ? '#FED976' :
-           d > 20    ? '#FFEDA0':
-		   d > 10     ? '#ffffcc':
+		return d > 10000 ? '#67000d' :
+           d > 5000  ?     '#a50f15' :
+           d > 1000  ?     '#cb181d' :
+           d > 500  ?      '#ef3b2c' :
+           d > 200  ?      '#fb6a4a' :
+           d > 100  ?      '#fc9272' :
+           d > 50   ?      '#fcbba1' :
+           d > 20    ?     '#fee0d2':
+		   d > 10     ?    '#fff5f0':
 		   '#848484';};
 					  
 		function style_casi_totali(feature) {
@@ -149,20 +153,20 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		//positivi attuali//
 		function getColor2(d) {
-		return d > 10000 ? '#800026' :
-           d > 5000  ? '#BD0026' :
-           d > 1000  ? '#E31A1C' :
-           d > 500  ? '#FC4E2A' :
-           d > 200  ? '#FD8D3C' :
-           d > 100  ? '#FEB24C' :
-           d > 50   ? '#FED976' :
-           d > 20    ? '#FFEDA0':
-		   d > 10     ? '#ffffcc':
-		   '#848484';};
+		return d > 10000 ? '#7f2704' :
+			   d > 5000  ? '#a63603' :
+               d > 1000  ? '#d94801' :
+               d > 500  ?  '#f16913' :
+               d > 200  ?  '#fd8d3c' :
+               d > 100  ?  '#fdae6b' :
+               d > 50   ?  '#fdd0a2' :
+               d > 20    ? '#fee6ce':
+		       d > 10     ?'#fff5eb':
+		       '#848484';};
 					  
 		function style_positivi(feature) {
 		return {
-        fillColor: getColor1(feature.properties.totale_attualmente_positivi),
+        fillColor: getColor2(feature.properties.totale_attualmente_positivi),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -180,16 +184,16 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		// decessi//
 		function getColor3(d) {
-		return d > 5000 ? '#49006a' :
-           d > 1000  ? '#7a0177' :
-           d > 500  ? '#ae017e' :
-           d > 200  ? '#dd3497' :
-           d > 100  ? '#f768a1' :
-           d > 50  ? '#fa9fb5' :
-           d > 20   ? '#fcc5c0' :
-           d > 10    ? '#fde0dd':
-		   d >= 0     ? '#fff7f3':
-		   '#848484';};
+		return 	d > 5000 	? '#3f007d' :
+				d > 1000  	? '#54278f' :
+				d > 500  	? '#6a51a3' :
+				d > 200  	? '#807dba' :
+				d > 100  	? '#9e9ac8' :
+				d > 50  	? '#bcbddc' :
+				d > 20   	? '#dadaeb' :
+				d > 10    	? '#efedf5':
+				d >= 0     	? '#fcfbfd':
+				'#848484';};
 		
 		function style_deceduti(feature) {
 		return {
@@ -211,16 +215,16 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		// guariti //
 		function getColor4(d) {
-		return d > 5000 ? '#00441b' :
-           d > 1000  ? '#006d2c' :
-           d > 500  ? '#238b45' :
-           d > 200  ? '#41ab5d' :
-           d > 100  ? '#74c476' :
-           d > 50  ? '#a1d99b' :
-           d > 20   ? '#c7e9c0' :
-           d > 10    ? '#e5f5e0':
-		   d >= 0     ? '#f7fcf5':
-		   '#848484';};
+		return 	d > 5000 ? 	'#00441b' :
+				d > 1000  ? '#006d2c' :
+				d > 500  ? 	'#238b45' :
+				d > 200  ? 	'#41ab5d' :
+				d > 100  ? 	'#74c476' :
+				d > 50  ? 	'#a1d99b' :
+				d > 20   ?	'#c7e9c0' :
+				d > 10    ?	'#e5f5e0':
+				d >= 0     ?'#f7fcf5':
+				'#848484';};
 		
 		function style_guariti(feature) {
 		return {
@@ -240,12 +244,44 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		}
 		});
 		
+		//totale casi prov//
+		function getColor5(d) {
+		return d > 5000 ? '#67001f' :
+           d > 1000  ? 	  '#980043' :
+           d > 500  ?     '#ce1256' :
+           d > 200  ?     '#e7298a' :
+           d > 100  ?     '#df65b0' :
+           d > 50  ?      '#c994c7' :
+           d > 20   ?     '#d4b9da' :
+           d > 10    ?    '#e7e1ef':
+		   d > 0     ?    '#f7f4f9':
+		   '#848484';};
+					  
+		function style_casi_totali_prov(feature) {
+		return {
+        fillColor: getColor5(feature.properties.totale_casi),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 1
+		};
+		};
+		
+		var casi_totali_prov = new L.geoJson(casi_totali_prov, {
+		style: style_casi_totali_prov,
+		onEachFeature: function (feature, layer) {
+		layer.bindTooltip("Provincia: <b>"+feature.properties.DEN_PROV+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
+		}
+		});
+		
 		// overaly //
 		var overlayMaps = {
 		"Casi totali": casi_totali,
 		"Positivi attuali": positivi,
 		"Deceduti": deceduti,
-		"Guariti dimessi":guariti
+		"Guariti dimessi":guariti,
+		"Province: casi totali": casi_totali_prov
 		};
 		
 L.control.layers(baseLayers,overlayMaps,{collapsed:false}).addTo(map);

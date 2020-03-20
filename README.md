@@ -8,7 +8,7 @@ Webmap con statistiche sulla diffusione del COVID-19 sul territorio nazionale
 
 La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://www.lezionigis.it/mappa-di-diffusione-del-covid-19-sul-territorio-italiano/ ,
 mostra le mappe e i grafici di diffusione del COVID-19 sul territorio nazionale.
-L'intera applicazione è stata sviluppata utilizzando sowftware OpenSource:
+L'intera applicazione è stata sviluppata utilizzando software OpenSource:
 
 - <a href="https://qgis.org/it/site/" target="_blank">QGIS</a> per il trattamento dei dati territoriali
 - <a href="https://leafletjs.com/" target="_blank">Leaflet</a> per la creazione della webmap
@@ -26,9 +26,9 @@ I dati utilizzati sono:
 Nel REPO sono presenti:
 - COVID.R: script di R per la generazione dei grafici e delle mappe
 - custom_theme.R: script per la tematizzazione dei grafici
-- regioni.gpkg: GeoPackage contenente i limiti amministrativi
+- dati_territoriali.gpkg: GeoPackage contenente i limiti amministrativi e i dati sulla popolazione residente
 - webmap: cartella con le librerie e script necessari per la generazione della webmap
-
+- colorbrewer scale.txt: scale di colori utilizzate per tematizzare i layer
 
 ____
 

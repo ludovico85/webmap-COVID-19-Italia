@@ -76,11 +76,11 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[24].data})`;
-		var text = `Casi totali: ${dati[24].totale_casi}<br>
-                    Deceduti: ${dati[24].deceduti}<br>
-					Guariti: ${dati[24].dimessi_guariti}<br>
-					Nuovi positivi: ${dati[24].nuovi_attualmente_positivi}`;
+        var data = `${dati[25].data})`;
+		var text = `Casi totali: ${dati[25].totale_casi}<br>
+                    Deceduti: ${dati[25].deceduti}<br>
+					Guariti: ${dati[25].dimessi_guariti}<br>
+					Nuovi positivi: ${dati[25].nuovi_attualmente_positivi}`;
 		console.log(text);
         $(".mystat").html(data);
 		$(".mystat1").html(text);

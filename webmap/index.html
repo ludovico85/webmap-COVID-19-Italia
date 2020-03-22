@@ -32,7 +32,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
 		</div>
 		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
-		<h1 style="text-align:center; color:#31B0D5";><span class="text1"></span><span class="text1a"></span></h1>
+		<h1 style="text-align:center; color:#31B0D5";><span class="text1"></span></span></h1>
 		<h1 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h1> 
 		<h1 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h1> 
 		<h1 style="text-align:center; color:#31B0D5";><span class="text4"></span></h1> 
@@ -80,14 +80,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[25].data})`;
-		var text = `Casi totali: ${dati[25].totale_casi}`;
-        var text2 =`Deceduti: ${dati[25].deceduti}`;
-		var text3 =`Guariti: ${dati[25].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[25].nuovi_attualmente_positivi}`;
-		var text1a = ` (+${dati[25].totale_casi-dati[24].totale_casi})`;	
-		var text2a = ` (+${dati[25].deceduti-dati[24].deceduti})`;
-		var text3a = ` (+${dati[25].dimessi_guariti-dati[24].dimessi_guariti})`;		
+        var data = `${dati[27].data})`;
+		var text = `Casi totali: ${dati[27].totale_casi}`;
+        var text2 =`Deceduti: ${dati[27].deceduti}`;
+		var text3 =`Guariti: ${dati[27].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[27].nuovi_attualmente_positivi}`;
+		var text1a = ` (+${dati[27].totale_casi-dati[26].totale_casi})`;	
+		var text2a = ` (+${dati[27].deceduti-dati[26].deceduti})`;
+		var text3a = ` (+${dati[27].dimessi_guariti-dati[26].dimessi_guariti})`;		
 		console.log(text2);
         $(".mystat").html(data);
 		$(".text1").html(text);

@@ -32,9 +32,9 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   ggtitle("Casi totali e attualmente positivi")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-20')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-22')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -71,9 +71,9 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   ggtitle("Guariti VS deceduti")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-20')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-22')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -95,9 +95,9 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=nuovi_casi, group=1)) +
   ggtitle("Nuovi casi")+
   geom_line(aes(color="nuovi casi"))+
   geom_point(shape = 21, size = 3, stroke = 0.5, aes(color="nuovi casi"))+
-  labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "4 day",
+  labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-20')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-22')))+
   scale_color_manual(name = NA, breaks = "nuovi casi", values = "#DEFA05")+theme_map()%+replace%
   theme(plot.margin = margin(0, -1, 0, -2, "cm"))
 
@@ -134,9 +134,9 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=(totale_casi), color=denominazion
   ggtitle("Casi totali per regione")+
   geom_line()+
   geom_point(shape = 21, size = 3, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "4 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-20')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-22')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -170,9 +170,9 @@ data_chart5<-melt(data_chart5, id.vars = "data", measure.vars = c("casi totali",
 chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
   ggtitle("Tamponi giornalieri (cumulati)")+
   geom_bar(stat="identity", position=position_dodge())+
-  labs(x = "data", y = " ")+scale_x_date(date_breaks = "4 day",
+  labs(x = "data", y = " ")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-20')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-22')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
@@ -214,7 +214,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-03-20`
+regioni_dati<-regioni_dati$`2020-03-22`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province
@@ -243,7 +243,7 @@ regioni_geo_positivi<-sp::merge(regioni_geo, attualmente_positivi, by='DEN_REG')
 province_geo_casi_totali<-sp::merge(province_geo, casi_totali_prov, by='SIGLA')
 
 ### nuovi dati su incidenza dei contagi su popolazione totale residente e tasso di mortalità per regionale ###
-regioni_geo_casi_totali@data$incidenza_pop_tot<-round((regioni_geo_casi_totali@data$totale_casi/regioni_geo_casi_totali@data$Ppopolazione_ISTAT_2019_POP_TOT*10000), 2)
+regioni_geo_casi_totali@data$incidenza_pop_tot<-round((regioni_geo_casi_totali@data$totale_casi/regioni_geo_casi_totali@data$popolazione_ISTAT_2019_POP_TOT*10000), 2)
 regioni_geo_deceduti@data$tasso_mortalita<-round((regioni_geo_deceduti@data$deceduti*100/regioni_geo_deceduti@data$totale_casi), 2)
 
 province_geo_casi_totali@data$incidenza_pop_tot<-round((province_geo_casi_totali@data$totale_casi/province_geo_casi_totali@data$POP_TOT_ISTAT*10000), 2)

@@ -14,7 +14,7 @@ source("custom_theme.R") ##funzione per customizzare l'output di ggplot2 ##
 
 url<-getURL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv")
 andamento_nazionale<-read.csv(text = url, head = T)
-andamento_nazionale<-separate(data = andamento_nazionale, col = data, into = c("data", "ora"), sep = "\\ ")
+andamento_nazionale<-separate(data = andamento_nazionale, col = data, into = c("data", "ora"), sep = "T")
 andamento_nazionale$data<-as.Date(andamento_nazionale$data)
 
 #####################################################################
@@ -34,7 +34,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-24')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-25')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -73,7 +73,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-25')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -97,7 +97,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=nuovi_casi, group=1)) +
   geom_point(shape = 21, size = 3, stroke = 0.5, aes(color="nuovi casi"))+
   labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-25')))+
   scale_color_manual(name = NA, breaks = "nuovi casi", values = "#DEFA05")+theme_map()%+replace%
   theme(plot.margin = margin(0, -1, 0, -2, "cm"))
 
@@ -125,7 +125,7 @@ htmlwidgets::saveWidget(chart3, "chart3.html",  background = "rgba(0,0,0,0.0)")
 
 url2<-getURL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv")
 regioni<-read.csv(text = url2, head = T)
-regioni<-separate(data = regioni, col = data, into = c("data", "ora"), sep = "\\ ")
+regioni<-separate(data = regioni, col = data, into = c("data", "ora"), sep = "T")
 regioni$data<-as.Date(regioni$data)
 
 #############################################################
@@ -147,7 +147,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=(totale_casi), color=denominazion
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-25')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -183,7 +183,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
   geom_bar(stat="identity", position=position_dodge())+
   labs(x = "data", y = " ")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-24')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-25')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
@@ -216,7 +216,7 @@ library(sp)
 ###################### dati provinciali ###################################################################################
 url3<-getURL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province-latest.csv")
 province<-read.csv(text = url3, head = T)
-province<-separate(data = province, col = data, into = c("data", "ora"), sep = "\\ ")
+province<-separate(data = province, col = data, into = c("data", "ora"), sep = "T")
 province$data<-as.Date(province$data)
 province$sigla_provincia<-as.character(province$sigla_provincia)### NA viene riconosciuto con null
 province[20,8]<-'NA'
@@ -225,7 +225,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-03-24`
+regioni_dati<-regioni_dati$`2020-03-25`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province

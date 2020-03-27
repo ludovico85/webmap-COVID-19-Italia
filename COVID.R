@@ -18,6 +18,52 @@ andamento_nazionale<-separate(data = andamento_nazionale, col = data, into = c("
 andamento_nazionale$data<-as.Date(andamento_nazionale$data)
 
 #####################################################################
+### chart 0 grafico percentuale tamponi positivi su tamponi totali###
+################# N.B. aggiornare la data############################
+#####################################################################
+library(data.table)
+
+data_chart0<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
+setDT(data_chart0)[, tamponi.differenza := tamponi - shift(tamponi)]
+setDT(data_chart0)[, casi.differenza := totale_casi - shift(totale_casi)]
+data_chart0$percentuale<-round((data_chart0$casi.differenza*100/data_chart0$tamponi.differenza),2)
+
+
+chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
+  ggtitle("Percentuale di tamponi positivi/tamponi totali")+
+  geom_bar(stat="identity", position=position_dodge(), fill = "#F800EB")+
+  labs(x = "data", y = "%")+scale_x_date(date_breaks = "6 day",
+                                         date_labels = "%b %d")+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-03-27')))+
+  theme_map()
+
+
+l <- list(
+  font = list(
+  family = "arial",
+  size = 12,
+  color = "white"),
+  bgcolor = NA,
+  bordercolor = NA,
+  borderwidth = 0,
+  orientation = "h",
+  x = 0.25,
+  y = -0.2)
+
+t<- list(
+  font = list(
+    family = "arial",
+    size = 12
+  )
+  
+)
+
+chart0<-ggplotly(chart0) %>%
+  layout(legend = l, title = t)
+
+htmlwidgets::saveWidget(chart0, "chart0.html",  background = "rgba(0,0,0,0.0)")
+
+
+#####################################################################
 ### chart 1 grafico sui casi totali e i casi attualemtne positivi####
 ################# N.B. aggiornare la data############################
 #####################################################################
@@ -25,7 +71,7 @@ andamento_nazionale$data<-as.Date(andamento_nazionale$data)
 ### lettura e formattazione dei dati ###
 data_chart1<-andamento_nazionale[, c("data", "totale_casi", "totale_attualmente_positivi")]
 colnames(data_chart1)<-c("data", "totali", "attualmente positivi")
-data_chart1<-melt(data_chart1, id.vars = "data", measure.vars = c("totali", "attualmente positivi"))
+data_chart1<-reshape2::melt(data_chart1, id.vars = "data", measure.vars = c("totali", "attualmente positivi"))
 
 ### creazione del grafico utilizzando ggplot2 ###
 chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
@@ -34,14 +80,14 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-26')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-27')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
 ### opzioni per la conversione del grafico di ggplot2 in plotly## 
 l <- list(
     font = list(
-    family = "sans-serif",
+    family = "arial",
     size = 12,
     color = "white"),
     bgcolor = NA,
@@ -51,9 +97,10 @@ l <- list(
     x = 0.25,
     y = -0.25)
 
+
 ### salvataggio del grafico in html utilizzando la libreria plotly###
 chart1<-ggplotly(chart1) %>%
-  layout(legend = l)
+  layout(legend = l, title = t)
 
 htmlwidgets::saveWidget(chart1, "chart1.html",  background = "rgba(0,0,0,0.0)")
 
@@ -65,7 +112,7 @@ htmlwidgets::saveWidget(chart1, "chart1.html",  background = "rgba(0,0,0,0.0)")
 
 data_chart2<-andamento_nazionale[, c("data", "dimessi_guariti", "deceduti")]
 colnames(data_chart2)<-c("data", "guariti", "deceduti")
-data_chart2<-melt(data_chart2, id.vars = "data", measure.vars = c("guariti", "deceduti"))
+data_chart2<-reshape2::melt(data_chart2, id.vars = "data", measure.vars = c("guariti", "deceduti"))
 
 chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   ggtitle("Guariti VS deceduti")+
@@ -73,13 +120,13 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-26')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-27')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
 
 chart2<-ggplotly(chart2) %>%
-  layout(legend = l)
+  layout(legend = l, title = t)
 
 htmlwidgets::saveWidget(chart2, "chart2.html",  background = "rgba(0,0,0,0.0)")
 
@@ -97,13 +144,13 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=nuovi_casi, group=1)) +
   geom_point(shape = 21, size = 3, stroke = 0.5, aes(color="nuovi casi"))+
   labs(x = "data", y = "numero di nuovi casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-26')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-27')))+
   scale_color_manual(name = NA, breaks = "nuovi casi", values = "#DEFA05")+theme_map()%+replace%
   theme(plot.margin = margin(0, -1, 0, -2, "cm"))
 
 l3 <- list(
   font = list(
-    family = "sans-serif",
+    family = "arial",
     size = 12,
     color = "white"),
   bgcolor = NA,
@@ -114,7 +161,7 @@ l3 <- list(
   y = -0.25)
 
 chart3<-ggplotly(chart3) %>%
-  layout(legend = l3)
+  layout(legend = l3, title = t)
 
 htmlwidgets::saveWidget(chart3, "chart3.html",  background = "rgba(0,0,0,0.0)")
 
@@ -147,13 +194,13 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=(totale_casi), color=denominazion
   geom_point(shape = 21, size = 3, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "6 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-03-26')))+
+                                                      limits = as.Date(c('2020-02-24','2020-03-27')))+
   scale_color_manual(values=palette)+
   theme_map()
 
 l <- list(
   font = list(
-  family = "sans-serif",
+  family = "arial",
   size = 12,
   color = "white"),
   bgcolor = NA,
@@ -164,7 +211,7 @@ l <- list(
   y = -0.2)
 
 chart4<-ggplotly(chart4) %>%
-  layout(legend = l)
+  layout(legend = l, title = t)
 
 htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
 
@@ -175,7 +222,7 @@ htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
 
 data_chart5<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
 colnames(data_chart5)<-c("data", "casi totali", "tamponi")
-data_chart5<-melt(data_chart5, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
+data_chart5<-reshape2::melt(data_chart5, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
 
 
 chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
@@ -183,13 +230,13 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
   geom_bar(stat="identity", position=position_dodge())+
   labs(x = "data", y = " ")+scale_x_date(date_breaks = "6 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-03-26')))+
+                                                            limits = as.Date(c('2020-02-24','2020-03-27')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
   l <- list(
     font = list(
-      family = "sans-serif",
+      family = "arial",
       size = 12,
       color = "white"),
     bgcolor = NA,
@@ -200,7 +247,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=value,fill=variable)) +
     y = -0.2)
 
 chart5<-ggplotly(chart5) %>%
-  layout(legend = l)
+  layout(legend = l, title = t)
 
 htmlwidgets::saveWidget(chart5, "chart5.html",  background = "rgba(0,0,0,0.0)")
 
@@ -225,7 +272,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-03-26`
+regioni_dati<-regioni_dati$`2020-03-27`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province

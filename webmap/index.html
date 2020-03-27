@@ -20,6 +20,10 @@
             margin: 0;
         }
         </style>
+		<style>
+		.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+		.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.8; } .leaflet-control-layers-expanded {color: #333;background: #fff;  opacity: 0.8;}
+		</style>
         <title>
 Mappa di diffusione del COVID-19 sul territorio italiano
 		</title>
@@ -32,13 +36,13 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
 		</div>
 		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
-		<h1 style="text-align:center; color:#31B0D5";><span class="text1"></span></span></h1>
-		<h1 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h1> 
-		<h1 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h1> 
-		<h1 style="text-align:center; color:#31B0D5";><span class="text4"></span></h1> 
+		<h2 style="text-align:center; color:#31B0D5";><span class="text1"></span></span></h2>
+		<h2 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h2> 
+		<h2 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h2> 
+		<h2 style="text-align:center; color:#31B0D5";><span class="text4"></span></h2> 
 
 		<!--<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>-->
-		
+		<iframe src="./chart0.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart3.html" width="100%" height="50%" frameborder="0"></iframe>
@@ -80,14 +84,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[31].data})`;
-		var text = `Casi totali: ${dati[31].totale_casi}`;
-        var text2 =`Deceduti: ${dati[31].deceduti}`;
-		var text3 =`Guariti: ${dati[31].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[31].nuovi_attualmente_positivi}`;
-		var text1a = ` (+${dati[31].totale_casi-dati[30].totale_casi})`;	
-		var text2a = ` (+${dati[31].deceduti-dati[30].deceduti})`;
-		var text3a = ` (+${dati[31].dimessi_guariti-dati[30].dimessi_guariti})`;		
+        var data = `${dati[32].data})`;
+		var text = `Casi totali: ${dati[32].totale_casi}`;
+        var text2 =`Deceduti: ${dati[32].deceduti}`;
+		var text3 =`Guariti: ${dati[32].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[32].nuovi_attualmente_positivi}`;
+		var text1a = ` (+${dati[32].totale_casi-dati[31].totale_casi})`;	
+		var text2a = ` (+${dati[32].deceduti-dati[31].deceduti})`;
+		var text3a = ` (+${dati[32].dimessi_guariti-dati[31].dimessi_guariti})`;		
 		console.log(text2);
         $(".mystat").html(data);
 		$(".text1").html(text);
@@ -130,18 +134,23 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		"OSM": OSM
 		};
 		
+		info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+		};
 		
 		//totale casi//
 		function getColor1(d) {
-		return d > 10000 ? '#67000d' :
-           d > 5000  ?     '#a50f15' :
-           d > 1000  ?     '#cb181d' :
-           d > 500  ?      '#ef3b2c' :
-           d > 200  ?      '#fb6a4a' :
-           d > 100  ?      '#fc9272' :
-           d > 50   ?      '#fcbba1' :
-           d > 20    ?     '#fee0d2':
-		   d > 10     ?    '#fff5f0':
+		return d > 30000 ? '#67000d' :
+           d > 20000  ?     '#a50f15' :
+           d > 10000  ?     '#cb181d' :
+           d > 5000  ?      '#ef3b2c' :
+           d > 2000  ?      '#fb6a4a' :
+           d > 1000  ?      '#fc9272' :
+           d > 500   ?      '#fcbba1' :
+           d > 200   ?     '#fee0d2':
+		   d > 100     ?    '#fff5f0':
 		   '#848484';};
 					  
 		function style_casi_totali(feature) {
@@ -166,15 +175,15 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		//positivi attuali//
 		function getColor2(d) {
-		return d > 10000 ? '#7f2704' :
-			   d > 5000  ? '#a63603' :
-               d > 1000  ? '#d94801' :
-               d > 500  ?  '#f16913' :
-               d > 200  ?  '#fd8d3c' :
-               d > 100  ?  '#fdae6b' :
-               d > 50   ?  '#fdd0a2' :
-               d > 20    ? '#fee6ce':
-		       d > 10     ?'#fff5eb':
+		return d > 20000 ? '#7f2704' :
+			   d > 10000  ? '#a63603' :
+               d > 5000  ? '#d94801' :
+               d > 2000  ?  '#f16913' :
+               d > 1000  ?  '#fd8d3c' :
+               d > 500  ?  '#fdae6b' :
+               d > 200   ?  '#fdd0a2' :
+               d > 100    ? '#fee6ce':
+		       d > 20     ?'#fff5eb':
 		       '#848484';};
 					  
 		function style_positivi(feature) {
@@ -288,6 +297,115 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		}
 		});
 		
+		
+		
+		// legend1 //
+		var legend1 = L.control({position: 'topright'});
+		legend1.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 30000],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor1(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+		
+		// legend2 //
+		var legend2 = L.control({position: 'topright'});
+		legend2.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [20, 100, 200, 500, 1000, 2000, 50000, 10000, 20000],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor2(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+		// legend3 //
+		var legend3 = L.control({position: 'topright'});
+		legend3.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor3(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+		// legend4 //
+		var legend4 = L.control({position: 'topright'});
+		legend4.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor4(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+		// legend5 //
+		var legend5 = L.control({position: 'topright'});
+		legend5.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + getColor5(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+		};
+		
 		// overaly //
 		var overlayMaps = {
 		"Casi totali": casi_totali,
@@ -297,6 +415,38 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		"Province: casi totali": casi_totali_prov
 		};
 		
-L.control.layers(baseLayers,overlayMaps,{collapsed:false}).addTo(map);
+		L.control.layers(overlayMaps,baseLayers,{collapsed:false}).addTo(map);
+		
+		legend1.addTo(map);
+		currentLegend = legend1;
+		
+		map.on('baselayerchange', function (eventLayer) {
+		if (eventLayer.name === 'Casi totali') {
+        map.removeControl(currentLegend );
+        currentLegend = legend1;
+        legend1.addTo(map);
+		}
+		else if  (eventLayer.name === 'Positivi attuali') {
+        map.removeControl(currentLegend);
+        currentLegend = legend2;
+        legend2.addTo(map);
+		}
+		else if  (eventLayer.name === 'Deceduti') {
+		map.removeControl(currentLegend );
+        currentLegend = legend3;
+        legend3.addTo(map);
+		}
+		else if  (eventLayer.name === 'Guariti dimessi') {
+		map.removeControl(currentLegend );
+        currentLegend = legend4;
+		legend4.addTo(map);
+		}
+		else if  (eventLayer.name === 'Province: casi totali') {
+		map.removeControl(currentLegend );
+        currentLegend = legend5;
+		legend5.addTo(map);
+		}
+		});
+		
 	</script>
 	</body>

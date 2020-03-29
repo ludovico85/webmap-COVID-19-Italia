@@ -36,7 +36,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
 		</div>
 		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
-		<h2 style="text-align:center; color:#31B0D5";><span class="text1"></span></span></h2>
+		<h2 style="text-align:center; color:#31B0D5";><span class="text1"></span><span class="text1a"></span></h2>
 		<h2 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h2> 
 		<h2 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h2> 
 		<h2 style="text-align:center; color:#31B0D5";><span class="text4"></span></h2> 
@@ -46,8 +46,9 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart3.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart4.html" width="100%" height="80%" frameborder="0"></iframe>
+		<iframe src="./chart4.html" width="100%" height="50%" frameborder="0"></iframe>
 		<iframe src="./chart5.html" width="100%" height="80%" frameborder="0"></iframe>
+		<iframe src="./chart6.html" width="100%" height="50%" frameborder="0"></iframe>
 		</div>
 		</div>
 <div id="info">
@@ -84,14 +85,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[33].data})`;
-		var text = `Casi totali: ${dati[33].totale_casi}`;
-        var text2 =`Deceduti: ${dati[33].deceduti}`;
-		var text3 =`Guariti: ${dati[33].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[33].nuovi_attualmente_positivi}`;
-		var text1a = ` (+${dati[33].totale_casi-dati[32].totale_casi})`;	
-		var text2a = ` (+${dati[33].deceduti-dati[32].deceduti})`;
-		var text3a = ` (+${dati[33].dimessi_guariti-dati[32].dimessi_guariti})`;		
+        var data = `${dati[34].data})`;
+		var text = `Casi totali: ${dati[34].totale_casi}`;
+        var text2 =`Deceduti: ${dati[34].deceduti}`;
+		var text3 =`Guariti: ${dati[34].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[34].nuovi_attualmente_positivi}`;
+		var text1a = ` (+${dati[34].totale_casi-dati[33].totale_casi})`;	
+		var text2a = ` (+${dati[34].deceduti-dati[33].deceduti})`;
+		var text3a = ` (+${dati[34].dimessi_guariti-dati[33].dimessi_guariti})`;		
 		console.log(text2);
         $(".mystat").html(data);
 		$(".text1").html(text);

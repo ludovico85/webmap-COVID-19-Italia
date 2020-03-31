@@ -241,7 +241,7 @@ regioni$data<-as.Date(regioni$data)
 #############################################################
 
 data_chart5<-regioni
-data_chart5<-data_chart5[, c(1, 5, 16)]
+data_chart5<-data_chart5[, c(1, 5, 17)]
 
 ### creazione palette con colori casuali per le regioni ###
 library(randomcoloR)

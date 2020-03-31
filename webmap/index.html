@@ -189,7 +189,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 					  
 		function style_positivi(feature) {
 		return {
-        fillColor: getColor2(feature.properties.totale_attualmente_positivi),
+        fillColor: getColor2(feature.properties.totale_positivi),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -201,7 +201,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		var positivi = new L.geoJson(positivi, {
 		style: style_positivi,
 		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Positivi attuali: <b>"+feature.properties.totale_attualmente_positivi);
+		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Positivi attuali: <b>"+feature.properties.totale_positivi);
 		}
 		});
 		

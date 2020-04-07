@@ -85,14 +85,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[42].data})`;
-		var text = `Casi totali: ${dati[42].totale_casi}`;
-        var text2 =`Deceduti: ${dati[42].deceduti}`;
-		var text3 =`Guariti: ${dati[42].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[42].variazione_totale_positivi}`;
-		var text1a = ` (+${dati[42].totale_casi-dati[41].totale_casi})`;	
-		var text2a = ` (+${dati[42].deceduti-dati[41].deceduti})`;
-		var text3a = ` (+${dati[42].dimessi_guariti-dati[41].dimessi_guariti})`;		
+        var data = `${dati[43].data})`;
+		var text = `Casi totali: ${dati[43].totale_casi}`;
+        var text2 =`Deceduti: ${dati[43].deceduti}`;
+		var text3 =`Guariti: ${dati[43].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[43].variazione_totale_positivi}`;
+		var text1a = ` (+${dati[43].totale_casi-dati[42].totale_casi})`;	
+		var text2a = ` (+${dati[43].deceduti-dati[42].deceduti})`;
+		var text3a = ` (+${dati[43].dimessi_guariti-dati[42].dimessi_guariti})`;		
 		console.log(text2);
         $(".mystat").html(data);
 		$(".text1").html(text);
@@ -269,14 +269,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		
 		//totale casi prov//
 		function getColor5(d) {
-		return d > 5000 ? '#67001f' :
-           d > 1000  ? 	  '#980043' :
-           d > 500  ?     '#ce1256' :
-           d > 200  ?     '#e7298a' :
-           d > 100  ?     '#df65b0' :
-           d > 50  ?      '#c994c7' :
-           d > 20   ?     '#d4b9da' :
-           d > 10    ?    '#e7e1ef':
+		return d > 10000 ? '#67001f' :
+           d > 5000  ? 	  '#980043' :
+           d > 2000  ?     '#ce1256' :
+           d > 1000  ?     '#e7298a' :
+           d > 500  ?     '#df65b0' :
+           d > 100  ?      '#c994c7' :
+           d > 50   ?     '#d4b9da' :
+           d > 20    ?    '#e7e1ef':
 		   d > 0     ?    '#f7f4f9':
 		   '#848484';};
 					  
@@ -390,7 +390,7 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		legend5.onAdd = function (map) {
 
 		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+			grades = [0, 20, 50, 100, 500, 1000, 2000, 5000, 10000],
 			labels = [],
 			from, to;
 

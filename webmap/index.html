@@ -85,14 +85,14 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		</script>
 		<script type="text/javascript">
 		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[45].data})`;
-		var text = `Casi totali: ${dati[45].totale_casi}`;
-        var text2 =`Deceduti: ${dati[45].deceduti}`;
-		var text3 =`Guariti: ${dati[45].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[45].variazione_totale_positivi}`;
-		var text1a = ` (+${dati[45].totale_casi-dati[44].totale_casi})`;	
-		var text2a = ` (+${dati[45].deceduti-dati[44].deceduti})`;
-		var text3a = ` (+${dati[45].dimessi_guariti-dati[44].dimessi_guariti})`;		
+        var data = `${dati[46].data})`;
+		var text = `Casi totali: ${dati[46].totale_casi}`;
+        var text2 =`Deceduti: ${dati[46].deceduti}`;
+		var text3 =`Guariti: ${dati[46].dimessi_guariti}`;
+		var text4 =	`Nuovi positivi: ${dati[46].variazione_totale_positivi}`;
+		var text1a = ` (+${dati[46].totale_casi-dati[45].totale_casi})`;	
+		var text2a = ` (+${dati[46].deceduti-dati[45].deceduti})`;
+		var text3a = ` (+${dati[46].dimessi_guariti-dati[45].dimessi_guariti})`;		
 		console.log(text2);
         $(".mystat").html(data);
 		$(".text1").html(text);

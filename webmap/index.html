@@ -2,73 +2,71 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/style.css"/>
 		<link rel="stylesheet" href="css/Control.FullScreen.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <style>
+    <style>
         html, body, #map {
             width: 100%;
             height: 100%;
             padding: 0;
             margin: 0;
         }
-        </style>
+    </style>
 		<style>
 		.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
 		.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.8; } .leaflet-control-layers-expanded {color: #333;background: #fff;  opacity: 0.8;}
 		</style>
-        <title>
-Mappa di diffusione del COVID-19 sul territorio italiano
-		</title>
-	</head>
-	<body>
-        <div id="map">
-		<div id = "sidebar">
-		<div class = "sidebar-content">
-		<div id = "logo">
-		<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
-		</div>
-		<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4> 
-		<h2 style="text-align:center; color:#31B0D5";><span class="text1"></span><span class="text1a"></span></h2>
-		<h2 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h2> 
-		<h2 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h2> 
-		<h2 style="text-align:center; color:#31B0D5";><span class="text4"></span></h2> 
+      <title>Mappa di diffusione del COVID-19 sul territorio italiano</title>
+		</head>
+		<body>
+    <div id="map">
+			<div id = "sidebar">
+				<div class = "sidebar-content">
+					<div id = "logo">
+					<a href="https://www.lezionigis.it/"> <img border="0" alt="lezionigis.it" src="https://www.lezionigis.it/wp-content/uploads/2017/10/logo.png" width="150px" height="50px" align="middle"></a>
+					</div>
+					<h4 style="text-align:center; color:#ffff";>Mappa di diffusione del COVID-19 sul territorio italiano (aggiornamento del <div class="mystat"></div></h4>
+					<h2 style="text-align:center; color:#31B0D5";><span class="text1"></span><span class="text1a"></span></h2>
+					<h2 style="text-align:center; color:#31B0D5";><span class="text2"></span><span class="text2a"></span></h2>
+					<h2 style="text-align:center; color:#31B0D5";><span class="text3"></span><span class="text3a"></span></h2>
+					<h2 style="text-align:center; color:#31B0D5";><span class="text4"></span></h2>
 
-		<!--<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>-->
-		<iframe src="./chart0.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart3.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart4.html" width="100%" height="50%" frameborder="0"></iframe>
-		<iframe src="./chart5.html" width="100%" height="80%" frameborder="0"></iframe>
-		<iframe src="./chart6.html" width="100%" height="50%" frameborder="0"></iframe>
+					<!--<h5 style="text-align:center; color:red";> Dati della Provincia di Parma e della Regione Campania non aggiornati (18/03/2020)</h5>-->
+					<iframe src="./chart0.html" width="100%" height="50%" frameborder="0"></iframe>
+					<iframe src="./chart1.html" width="100%" height="50%" frameborder="0"></iframe>
+					<iframe src="./chart2.html" width="100%" height="50%" frameborder="0"></iframe>
+					<iframe src="./chart3.html" width="100%" height="50%" frameborder="0"></iframe>
+					<iframe src="./chart4.html" width="100%" height="50%" frameborder="0"></iframe>
+					<iframe src="./chart5.html" width="100%" height="80%" frameborder="0"></iframe>
+					<iframe src="./chart6.html" width="100%" height="50%" frameborder="0"></iframe>
+				</div>
+			</div>
+			<div id="info">
+				<button type="button" class="btn btn-info" id="sidebarCollapse">
+			         <i class="fa fa-bar-chart"></i>
+			         <span>Mostra i grafici</span>
+			    </button>
+			</div>
 		</div>
-		</div>
-<div id="info">
-	<button type="button" class="btn btn-info" id="sidebarCollapse">
-         <i class="fa fa-bar-chart"></i>
-         <span>Mostra i grafici</span>
-    </button>
-</div>
-</div>
-        <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.js"></script>
 		<script src="js/Control.FullScreen.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
 		<script src="js/leaflet.ajax.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
 		<script src="js/jquery-3.4.1.min.js"></script>
 		<script src="dati/casi_totali.js"></script>
 		<script src="dati/deceduti.js"></script>
@@ -76,378 +74,378 @@ Mappa di diffusione del COVID-19 sul territorio italiano
 		<script src="dati/guariti.js"></script>
 		<script src="dati/casi_totali_prov.js"></script>
 		<script type="text/javascript">
-        $(document).ready(function () {
-			$("#wrapper").toggleClass("toggle");
-            $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-            });
-        });
+    	$(document).ready(function () {
+				$("#wrapper").toggleClass("toggle");
+      	$('#sidebarCollapse').on('click', function () {
+        	$('#sidebar').toggleClass('active');
+      	});
+      });
 		</script>
 		<script type="text/javascript">
-		$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-        var data = `${dati[47].data})`;
-		var text = `Casi totali: ${dati[47].totale_casi}`;
-        var text2 =`Deceduti: ${dati[47].deceduti}`;
-		var text3 =`Guariti: ${dati[47].dimessi_guariti}`;
-		var text4 =	`Nuovi positivi: ${dati[47].variazione_totale_positivi}`;
-		var text1a = ` (+${dati[47].totale_casi-dati[46].totale_casi})`;	
-		var text2a = ` (+${dati[47].deceduti-dati[46].deceduti})`;
-		var text3a = ` (+${dati[47].dimessi_guariti-dati[46].dimessi_guariti})`;		
-		console.log(text2);
-        $(".mystat").html(data);
-		$(".text1").html(text);
-		$(".text2").html(text2);
-		$(".text3").html(text3);
-		$(".text4").html(text4);
-		$(".text1a").html(text1a);
-		$(".text2a").html(text2a);
-		$(".text3a").html(text3a);
-		});
+			$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
+	    	var data = `${dati[49].data})`;
+				var text = `Casi totali: ${dati[49].totale_casi}`;
+	      var text2 =`Deceduti: ${dati[49].deceduti}`;
+				var text3 =`Guariti: ${dati[49].dimessi_guariti}`;
+				var text4 =	`Nuovi positivi: ${dati[49].variazione_totale_positivi}`;
+				var text1a = ` (+${dati[49].totale_casi-dati[48].totale_casi})`;
+				var text2a = ` (+${dati[49].deceduti-dati[48].deceduti})`;
+				var text3a = ` (+${dati[49].dimessi_guariti-dati[48].dimessi_guariti})`;
+				console.log(text2);
+	      $(".mystat").html(data);
+				$(".text1").html(text);
+				$(".text2").html(text2);
+				$(".text3").html(text3);
+				$(".text4").html(text4);
+				$(".text1a").html(text1a);
+				$(".text2a").html(text2a);
+				$(".text3a").html(text3a);
+			});
 		</script>
-        <script>
-		var map = L.map('map', {
-            zoomControl:true, maxZoom:19, minZoom:4,
-			fullscreenControl: true,
-			fullscreenControlOptions: {
+    <script>
+			var map = L.map('map', {
+      	zoomControl:true, maxZoom:19, minZoom:4,
+				fullscreenControl: true,
+				fullscreenControlOptions: {
 				position: 'topright'}
         });
-		map.setView([42.33,8.99], 6);
-        var hash = new L.Hash(map);
-        map.attributionControl.addAttribution('powered by <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a>; Repository del progetto <a href="https://github.com/ludovico85/webmap-COVID-19-Italia" target="_blank"><i class="fa fa-github"></i></a>; Grafici realizzati con <a href="https://www.r-project.org/">R</a>; dati a cura del Dipartimento della Potezione Civile <a href="https://github.com/pcm-dpc/COVID-19"target="_blank">COVID-19</a>');
-        var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-            map.setMaxBounds(map.getBounds());
-        };
-		
-		var CartoDB_DarkMatterNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-		subdomains: 'abcd',
-		maxZoom: 19
-		}).addTo(map);
-		
-		var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-		maxZoom: 19
-		});
+			map.setView([42.33,8.99], 6);
+	        var hash = new L.Hash(map);
+	        map.attributionControl.addAttribution('powered by <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a>; Repository del progetto <a href="https://github.com/ludovico85/webmap-COVID-19-Italia" target="_blank"><i class="fa fa-github"></i></a>; Grafici realizzati con <a href="https://www.r-project.org/">R</a>; dati a cura del Dipartimento della Potezione Civile <a href="https://github.com/pcm-dpc/COVID-19"target="_blank">COVID-19</a>');
+	        var bounds_group = new L.featureGroup([]);
+	        function setBounds() {
+	            map.setMaxBounds(map.getBounds());
+	        };
 
-		var baseLayers = {
-		"Carto_DB": CartoDB_DarkMatterNoLabels,
-		"OSM": OSM
-		};
-		
-		info.onAdd = function (map) {
-		this._div = L.DomUtil.create('div', 'info');
-		this.update();
-		return this._div;
-		};
-		
+			var CartoDB_DarkMatterNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+			subdomains: 'abcd',
+			maxZoom: 19
+			}).addTo(map);
+
+			var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+			maxZoom: 19
+			});
+
+			var baseLayers = {
+			"Carto_DB": CartoDB_DarkMatterNoLabels,
+			"OSM": OSM
+			};
+
+			info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info');
+			this.update();
+			return this._div;
+			};
+
 		//totale casi//
-		function getColor1(d) {
-		return d > 30000 ? '#67000d' :
-           d > 20000  ?     '#a50f15' :
-           d > 10000  ?     '#cb181d' :
-           d > 5000  ?      '#ef3b2c' :
-           d > 2000  ?      '#fb6a4a' :
-           d > 1000  ?      '#fc9272' :
-           d > 500   ?      '#fcbba1' :
-           d > 200   ?     '#fee0d2':
-		   d > 100     ?    '#fff5f0':
-		   '#848484';};
-					  
-		function style_casi_totali(feature) {
-		return {
-        fillColor: getColor1(feature.properties.totale_casi),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 1
-		};
-		};
-		
-		var casi_totali = new L.geoJson(casi_totali, {
-		style: style_casi_totali,
-		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
-		}
-		});
-		map.addLayer(casi_totali);
-		
-		
-		//positivi attuali//
-		function getColor2(d) {
-		return d > 20000 ? '#7f2704' :
-			   d > 10000  ? '#a63603' :
-               d > 5000  ? '#d94801' :
-               d > 2000  ?  '#f16913' :
-               d > 1000  ?  '#fd8d3c' :
-               d > 500  ?  '#fdae6b' :
-               d > 200   ?  '#fdd0a2' :
-               d > 100    ? '#fee6ce':
-		       d > 20     ?'#fff5eb':
-		       '#848484';};
-					  
-		function style_positivi(feature) {
-		return {
-        fillColor: getColor2(feature.properties.totale_positivi),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 1
-		};
-		};
-		
-		var positivi = new L.geoJson(positivi, {
-		style: style_positivi,
-		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Positivi attuali: <b>"+feature.properties.totale_positivi);
-		}
-		});
-		
-		// decessi//
-		function getColor3(d) {
-		return 	d > 5000 	? '#3f007d' :
-				d > 1000  	? '#54278f' :
-				d > 500  	? '#6a51a3' :
-				d > 200  	? '#807dba' :
-				d > 100  	? '#9e9ac8' :
-				d > 50  	? '#bcbddc' :
-				d > 20   	? '#dadaeb' :
-				d > 10    	? '#efedf5':
-				d >= 0     	? '#fcfbfd':
-				'#848484';};
-		
-		function style_deceduti(feature) {
-		return {
-        fillColor: getColor3(feature.properties.deceduti),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 1
-		};
-		};
-		
-		var deceduti = new L.geoJson(deceduti, {
-		style: style_deceduti,
-		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale decessi: <b>"+feature.properties.deceduti+"</b><br><hr style='border-top: dotted 2px;'/>Tasso di mortalità :<b>"+feature.properties.tasso_mortalita+"%");
-		}
-		});
-		
-		// guariti //
-		function getColor4(d) {
-		return 	d > 5000 ? 	'#00441b' :
-				d > 1000  ? '#006d2c' :
-				d > 500  ? 	'#238b45' :
-				d > 200  ? 	'#41ab5d' :
-				d > 100  ? 	'#74c476' :
-				d > 50  ? 	'#a1d99b' :
-				d > 20   ?	'#c7e9c0' :
-				d > 10    ?	'#e5f5e0':
-				d >= 0     ?'#f7fcf5':
-				'#848484';};
-		
-		function style_guariti(feature) {
-		return {
-        fillColor: getColor4(feature.properties.dimessi_guariti),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 1
-		};
-		};
-		
-		var guariti = new L.geoJson(guariti, {
-		style: style_guariti,
-		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale guariti: <b>"+feature.properties.dimessi_guariti);
-		}
-		});
-		
-		//totale casi prov//
-		function getColor5(d) {
-		return d > 10000 ? '#67001f' :
-           d > 5000  ? 	  '#980043' :
-           d > 2000  ?     '#ce1256' :
-           d > 1000  ?     '#e7298a' :
-           d > 500  ?     '#df65b0' :
-           d > 100  ?      '#c994c7' :
-           d > 50   ?     '#d4b9da' :
-           d > 20    ?    '#e7e1ef':
-		   d > 0     ?    '#f7f4f9':
-		   '#848484';};
-					  
-		function style_casi_totali_prov(feature) {
-		return {
-        fillColor: getColor5(feature.properties.totale_casi),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 1
-		};
-		};
-		
-		var casi_totali_prov = new L.geoJson(casi_totali_prov, {
-		style: style_casi_totali_prov,
-		onEachFeature: function (feature, layer) {
-		layer.bindTooltip("Provincia: <b>"+feature.properties.DEN_PROV+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
-		}
-		});
-		
-		
-		
-		// legend1 //
-		var legend1 = L.control({position: 'topright'});
-		legend1.onAdd = function (map) {
+			function getColor1(d) {
+			return d > 30000 ? '#67000d' :
+	           d > 20000  ?     '#a50f15' :
+	           d > 10000  ?     '#cb181d' :
+	           d > 5000  ?      '#ef3b2c' :
+	           d > 2000  ?      '#fb6a4a' :
+	           d > 1000  ?      '#fc9272' :
+	           d > 500   ?      '#fcbba1' :
+	           d > 200   ?     '#fee0d2':
+			   d > 100     ?    '#fff5f0':
+			   '#848484';};
 
-		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 30000],
-			labels = [],
-			from, to;
+			function style_casi_totali(feature) {
+			return {
+	        fillColor: getColor1(feature.properties.totale_casi),
+	        weight: 2,
+	        opacity: 1,
+	        color: 'white',
+	        dashArray: '3',
+	        fillOpacity: 1
+			};
+			};
 
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
+			var casi_totali = new L.geoJson(casi_totali, {
+			style: style_casi_totali,
+			onEachFeature: function (feature, layer) {
+			layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
+			}
+			});
+			map.addLayer(casi_totali);
 
-			labels.push(
-				'<i style="background:' + getColor1(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
-		}
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-		};
-		
-		// legend2 //
-		var legend2 = L.control({position: 'topright'});
-		legend2.onAdd = function (map) {
+			//positivi attuali//
+			function getColor2(d) {
+			return d > 20000 ? '#7f2704' :
+				   d > 10000  ? '#a63603' :
+	               d > 5000  ? '#d94801' :
+	               d > 2000  ?  '#f16913' :
+	               d > 1000  ?  '#fd8d3c' :
+	               d > 500  ?  '#fdae6b' :
+	               d > 200   ?  '#fdd0a2' :
+	               d > 100    ? '#fee6ce':
+			       d > 20     ?'#fff5eb':
+			       '#848484';};
 
-		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [20, 100, 200, 500, 1000, 2000, 50000, 10000, 20000],
-			labels = [],
-			from, to;
+			function style_positivi(feature) {
+			return {
+	        fillColor: getColor2(feature.properties.totale_positivi),
+	        weight: 2,
+	        opacity: 1,
+	        color: 'white',
+	        dashArray: '3',
+	        fillOpacity: 1
+			};
+			};
 
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
+			var positivi = new L.geoJson(positivi, {
+			style: style_positivi,
+			onEachFeature: function (feature, layer) {
+			layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Positivi attuali: <b>"+feature.properties.totale_positivi);
+			}
+			});
 
-			labels.push(
-				'<i style="background:' + getColor2(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
-		}
+			// decessi//
+			function getColor3(d) {
+			return 	d > 5000 	? '#3f007d' :
+					d > 1000  	? '#54278f' :
+					d > 500  	? '#6a51a3' :
+					d > 200  	? '#807dba' :
+					d > 100  	? '#9e9ac8' :
+					d > 50  	? '#bcbddc' :
+					d > 20   	? '#dadaeb' :
+					d > 10    	? '#efedf5':
+					d >= 0     	? '#fcfbfd':
+					'#848484';};
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-		};
-		// legend3 //
-		var legend3 = L.control({position: 'topright'});
-		legend3.onAdd = function (map) {
+			function style_deceduti(feature) {
+			return {
+	        fillColor: getColor3(feature.properties.deceduti),
+	        weight: 2,
+	        opacity: 1,
+	        color: 'white',
+	        dashArray: '3',
+	        fillOpacity: 1
+			};
+			};
 
-		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
-			labels = [],
-			from, to;
+			var deceduti = new L.geoJson(deceduti, {
+			style: style_deceduti,
+			onEachFeature: function (feature, layer) {
+			layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale decessi: <b>"+feature.properties.deceduti+"</b><br><hr style='border-top: dotted 2px;'/>Tasso di mortalità :<b>"+feature.properties.tasso_mortalita+"%");
+			}
+			});
 
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
+			// guariti //
+			function getColor4(d) {
+			return 	d > 5000 ? 	'#00441b' :
+					d > 1000  ? '#006d2c' :
+					d > 500  ? 	'#238b45' :
+					d > 200  ? 	'#41ab5d' :
+					d > 100  ? 	'#74c476' :
+					d > 50  ? 	'#a1d99b' :
+					d > 20   ?	'#c7e9c0' :
+					d > 10    ?	'#e5f5e0':
+					d >= 0     ?'#f7fcf5':
+					'#848484';};
 
-			labels.push(
-				'<i style="background:' + getColor3(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
-		}
+			function style_guariti(feature) {
+			return {
+	        fillColor: getColor4(feature.properties.dimessi_guariti),
+	        weight: 2,
+	        opacity: 1,
+	        color: 'white',
+	        dashArray: '3',
+	        fillOpacity: 1
+			};
+			};
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-		};
-		// legend4 //
-		var legend4 = L.control({position: 'topright'});
-		legend4.onAdd = function (map) {
+			var guariti = new L.geoJson(guariti, {
+			style: style_guariti,
+			onEachFeature: function (feature, layer) {
+			layer.bindTooltip("Regione: <b>"+feature.properties.DEN_REG+"<br></b>Totale guariti: <b>"+feature.properties.dimessi_guariti);
+			}
+			});
 
-		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
-			labels = [],
-			from, to;
+			//totale casi prov//
+			function getColor5(d) {
+			return d > 10000 ? '#67001f' :
+	           d > 5000  ? 	  '#980043' :
+	           d > 2000  ?     '#ce1256' :
+	           d > 1000  ?     '#e7298a' :
+	           d > 500  ?     '#df65b0' :
+	           d > 100  ?      '#c994c7' :
+	           d > 50   ?     '#d4b9da' :
+	           d > 20    ?    '#e7e1ef':
+			   d > 0     ?    '#f7f4f9':
+			   '#848484';};
 
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
+			function style_casi_totali_prov(feature) {
+			return {
+	        fillColor: getColor5(feature.properties.totale_casi),
+	        weight: 2,
+	        opacity: 1,
+	        color: 'white',
+	        dashArray: '3',
+	        fillOpacity: 1
+			};
+			};
 
-			labels.push(
-				'<i style="background:' + getColor4(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
-		}
+			var casi_totali_prov = new L.geoJson(casi_totali_prov, {
+			style: style_casi_totali_prov,
+			onEachFeature: function (feature, layer) {
+			layer.bindTooltip("Provincia: <b>"+feature.properties.DEN_PROV+"<br></b>Totale casi :<b>"+feature.properties.totale_casi+"</b><br><hr style='border-top: dotted 2px;'/>Incidenza su popolazione totale<br>(numero di casi ogni 10.000 abitanti): <b>"+feature.properties.incidenza_pop_tot);
+			}
+			});
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-		};
-		// legend5 //
-		var legend5 = L.control({position: 'topright'});
-		legend5.onAdd = function (map) {
 
-		var div = L.DomUtil.create('div', 'info legend'),
-			grades = [0, 20, 50, 100, 500, 1000, 2000, 5000, 10000],
-			labels = [],
-			from, to;
 
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
+			// legend1 //
+			var legend1 = L.control({position: 'topright'});
+			legend1.onAdd = function (map) {
 
-			labels.push(
-				'<i style="background:' + getColor5(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
-		}
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 30000],
+				labels = [],
+				from, to;
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-		};
-		
-		// overaly //
-		var overlayMaps = {
-		"Casi totali": casi_totali,
-		"Positivi attuali": positivi,
-		"Deceduti": deceduti,
-		"Guariti dimessi":guariti,
-		"Province: casi totali": casi_totali_prov
-		};
-		
-		L.control.layers(overlayMaps,baseLayers,{collapsed:false}).addTo(map);
-		
-		legend1.addTo(map);
-		currentLegend = legend1;
-		
-		map.on('baselayerchange', function (eventLayer) {
-		if (eventLayer.name === 'Casi totali') {
-        map.removeControl(currentLegend );
-        currentLegend = legend1;
-        legend1.addTo(map);
-		}
-		else if  (eventLayer.name === 'Positivi attuali') {
-        map.removeControl(currentLegend);
-        currentLegend = legend2;
-        legend2.addTo(map);
-		}
-		else if  (eventLayer.name === 'Deceduti') {
-		map.removeControl(currentLegend );
-        currentLegend = legend3;
-        legend3.addTo(map);
-		}
-		else if  (eventLayer.name === 'Guariti dimessi') {
-		map.removeControl(currentLegend );
-        currentLegend = legend4;
-		legend4.addTo(map);
-		}
-		else if  (eventLayer.name === 'Province: casi totali') {
-		map.removeControl(currentLegend );
-        currentLegend = legend5;
-		legend5.addTo(map);
-		}
-		});
-		
-	</script>
-	</body>
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push(
+					'<i style="background:' + getColor1(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+			};
+
+			// legend2 //
+			var legend2 = L.control({position: 'topright'});
+			legend2.onAdd = function (map) {
+
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [20, 100, 200, 500, 1000, 2000, 50000, 10000, 20000],
+				labels = [],
+				from, to;
+
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push(
+					'<i style="background:' + getColor2(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+			};
+			// legend3 //
+			var legend3 = L.control({position: 'topright'});
+			legend3.onAdd = function (map) {
+
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+				labels = [],
+				from, to;
+
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push(
+					'<i style="background:' + getColor3(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+			};
+			// legend4 //
+			var legend4 = L.control({position: 'topright'});
+			legend4.onAdd = function (map) {
+
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+				labels = [],
+				from, to;
+
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push(
+					'<i style="background:' + getColor4(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+			};
+			// legend5 //
+			var legend5 = L.control({position: 'topright'});
+			legend5.onAdd = function (map) {
+
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [0, 20, 50, 100, 500, 1000, 2000, 5000, 10000],
+				labels = [],
+				from, to;
+
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push(
+					'<i style="background:' + getColor5(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+			};
+
+			// overaly //
+			var overlayMaps = {
+			"Casi totali": casi_totali,
+			"Positivi attuali": positivi,
+			"Deceduti": deceduti,
+			"Guariti dimessi":guariti,
+			"Province: casi totali": casi_totali_prov
+			};
+
+			L.control.layers(overlayMaps,baseLayers,{collapsed:false}).addTo(map);
+
+			legend1.addTo(map);
+			currentLegend = legend1;
+
+			map.on('baselayerchange', function (eventLayer) {
+			if (eventLayer.name === 'Casi totali') {
+	        map.removeControl(currentLegend );
+	        currentLegend = legend1;
+	        legend1.addTo(map);
+			}
+			else if  (eventLayer.name === 'Positivi attuali') {
+	        map.removeControl(currentLegend);
+	        currentLegend = legend2;
+	        legend2.addTo(map);
+			}
+			else if  (eventLayer.name === 'Deceduti') {
+			map.removeControl(currentLegend );
+	        currentLegend = legend3;
+	        legend3.addTo(map);
+			}
+			else if  (eventLayer.name === 'Guariti dimessi') {
+			map.removeControl(currentLegend );
+	        currentLegend = legend4;
+			legend4.addTo(map);
+			}
+			else if  (eventLayer.name === 'Province: casi totali') {
+			map.removeControl(currentLegend );
+	        currentLegend = legend5;
+			legend5.addTo(map);
+			}
+			});
+
+		</script>
+		</body>

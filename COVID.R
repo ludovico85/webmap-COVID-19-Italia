@@ -33,7 +33,7 @@ chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
   ggtitle("Percentuale di tamponi positivi/tamponi totali")+
   geom_bar(stat="identity", position=position_dodge(), fill = "#F800EB")+
   labs(x = "data", y = "%")+scale_x_date(date_breaks = "8 day",
-                                         date_labels = "%b %d")+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-04-15')))+
+                                         date_labels = "%b %d")+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-04-16')))+
   theme_map()
 
 
@@ -80,7 +80,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                            limits = as.Date(c('2020-02-24','2020-04-16')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -120,7 +120,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-16')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -149,7 +149,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-16')))+
   scale_color_manual(labels = c("nuovi casi totali", "nuovi attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -196,7 +196,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-16')))+
   scale_color_manual(labels = c("nuovi guariti", "nuovi deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -256,7 +256,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=casi_totali, color=regione)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-16')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -294,7 +294,7 @@ chart6<-ggplot(data=data_chart6, aes(x=data, y=value,fill=variable)) +
   geom_bar(stat="identity", position=position_dodge())+
   labs(x = "data", y = " ")+scale_x_date(date_breaks = "8 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-04-15')))+
+                                                            limits = as.Date(c('2020-02-24','2020-04-16')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
@@ -336,7 +336,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-04-15`
+regioni_dati<-regioni_dati$`2020-04-16`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province

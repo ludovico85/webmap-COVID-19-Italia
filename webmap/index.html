@@ -83,14 +83,14 @@
 		</script>
 		<script type="text/javascript">
 			$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-	    	var data = `${dati[51].data})`;
-				var text = `Casi totali: ${dati[51].totale_casi}`;
-	      var text2 =`Deceduti: ${dati[51].deceduti}`;
-				var text3 =`Guariti: ${dati[51].dimessi_guariti}`;
-				var text4 =	`Nuovi positivi: ${dati[51].variazione_totale_positivi}`;
-				var text1a = ` (+${dati[51].totale_casi-dati[50].totale_casi})`;
-				var text2a = ` (+${dati[51].deceduti-dati[50].deceduti})`;
-				var text3a = ` (+${dati[51].dimessi_guariti-dati[50].dimessi_guariti})`;
+	    	var data = `${dati[52].data})`;
+				var text = `Casi totali: ${dati[52].totale_casi}`;
+	      var text2 =`Deceduti: ${dati[52].deceduti}`;
+				var text3 =`Guariti: ${dati[52].dimessi_guariti}`;
+				var text4 =	`Nuovi positivi: ${dati[52].variazione_totale_positivi}`;
+				var text1a = ` (+${dati[52].totale_casi-dati[51].totale_casi})`;
+				var text2a = ` (+${dati[52].deceduti-dati[51].deceduti})`;
+				var text3a = ` (+${dati[52].dimessi_guariti-dati[51].dimessi_guariti})`;
 				console.log(text2);
 	      $(".mystat").html(data);
 				$(".text1").html(text);
@@ -141,15 +141,15 @@
 
 		//totale casi//
 			function getColor1(d) {
-			return d > 30000 ? '#67000d' :
-	           d > 20000  ?     '#a50f15' :
-	           d > 10000  ?     '#cb181d' :
-	           d > 5000  ?      '#ef3b2c' :
-	           d > 2000  ?      '#fb6a4a' :
-	           d > 1000  ?      '#fc9272' :
-	           d > 500   ?      '#fcbba1' :
-	           d > 200   ?     '#fee0d2':
-			   d > 100     ?    '#fff5f0':
+			return d > 50000 ? '#67000d' :
+	           d > 30000  ?     '#a50f15' :
+	           d > 20000  ?     '#cb181d' :
+	           d > 10000  ?      '#ef3b2c' :
+	           d > 5000  ?      '#fb6a4a' :
+	           d > 2000  ?      '#fc9272' :
+	           d > 1000   ?      '#fcbba1' :
+	           d > 500   ?     '#fee0d2':
+			   d > 0     ?    '#fff5f0':
 			   '#848484';};
 
 			function style_casi_totali(feature) {
@@ -174,15 +174,15 @@
 
 			//positivi attuali//
 			function getColor2(d) {
-			return d > 20000 ? '#7f2704' :
-				   d > 10000  ? '#a63603' :
-	               d > 5000  ? '#d94801' :
-	               d > 2000  ?  '#f16913' :
-	               d > 1000  ?  '#fd8d3c' :
-	               d > 500  ?  '#fdae6b' :
-	               d > 200   ?  '#fdd0a2' :
-	               d > 100    ? '#fee6ce':
-			       d > 20     ?'#fff5eb':
+			return d > 50000 ? '#7f2704' :
+				   d > 30000  ? '#a63603' :
+	               d > 20000  ? '#d94801' :
+	               d > 10000  ?  '#f16913' :
+	               d > 5000  ?  '#fd8d3c' :
+	               d > 2000  ?  '#fdae6b' :
+	               d > 1000   ?  '#fdd0a2' :
+	               d > 500    ? '#fee6ce':
+			       d > 0     ?'#fff5eb':
 			       '#848484';};
 
 			function style_positivi(feature) {
@@ -205,15 +205,15 @@
 
 			// decessi//
 			function getColor3(d) {
-			return 	d > 5000 	? '#3f007d' :
-					d > 1000  	? '#54278f' :
-					d > 500  	? '#6a51a3' :
-					d > 200  	? '#807dba' :
-					d > 100  	? '#9e9ac8' :
-					d > 50  	? '#bcbddc' :
-					d > 20   	? '#dadaeb' :
-					d > 10    	? '#efedf5':
-					d >= 0     	? '#fcfbfd':
+			return 	d > 10000 	? '#3f007d' :
+					d > 5000  	? '#54278f' :
+					d > 1000  	? '#6a51a3' :
+					d > 500  	? '#807dba' :
+					d > 200  	? '#9e9ac8' :
+					d > 100  	? '#bcbddc' :
+					d > 50   	? '#dadaeb' :
+					d > 20    	? '#efedf5':
+					d >= 1     	? '#fcfbfd':
 					'#848484';};
 
 			function style_deceduti(feature) {
@@ -236,15 +236,15 @@
 
 			// guariti //
 			function getColor4(d) {
-			return 	d > 5000 ? 	'#00441b' :
-					d > 1000  ? '#006d2c' :
-					d > 500  ? 	'#238b45' :
-					d > 200  ? 	'#41ab5d' :
-					d > 100  ? 	'#74c476' :
-					d > 50  ? 	'#a1d99b' :
-					d > 20   ?	'#c7e9c0' :
-					d > 10    ?	'#e5f5e0':
-					d >= 0     ?'#f7fcf5':
+			return 	d > 10000 ? 	'#00441b' :
+					d > 5000  ? '#006d2c' :
+					d > 2000  ? 	'#238b45' :
+					d > 1000  ? 	'#41ab5d' :
+					d > 500  ? 	'#74c476' :
+					d > 100  ? 	'#a1d99b' :
+					d > 50   ?	'#c7e9c0' :
+					d > 20    ?	'#e5f5e0':
+					d >= 1     ?'#f7fcf5':
 					'#848484';};
 
 			function style_guariti(feature) {
@@ -303,7 +303,7 @@
 			legend1.onAdd = function (map) {
 
 			var div = L.DomUtil.create('div', 'info legend'),
-				grades = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 30000],
+				grades = [1, 500, 1000, 2000, 5000, 10000, 20000, 30000, 50000],
 				labels = [],
 				from, to;
 
@@ -325,7 +325,7 @@
 			legend2.onAdd = function (map) {
 
 			var div = L.DomUtil.create('div', 'info legend'),
-				grades = [20, 100, 200, 500, 1000, 2000, 50000, 10000, 20000],
+				grades = [1, 500, 1000, 2000, 5000, 10000, 20000, 30000, 50000],
 				labels = [],
 				from, to;
 
@@ -346,7 +346,7 @@
 			legend3.onAdd = function (map) {
 
 			var div = L.DomUtil.create('div', 'info legend'),
-				grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+				grades = [1, 20, 50, 100, 500, 1000, 2000, 5000, 10000],
 				labels = [],
 				from, to;
 
@@ -367,7 +367,7 @@
 			legend4.onAdd = function (map) {
 
 			var div = L.DomUtil.create('div', 'info legend'),
-				grades = [0, 10, 20, 50, 100, 500, 1000, 2000, 5000],
+				grades = [1, 20, 50, 100, 500, 1000, 2000, 5000, 10000],
 				labels = [],
 				from, to;
 

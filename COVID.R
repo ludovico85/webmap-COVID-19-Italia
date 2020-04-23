@@ -33,7 +33,7 @@ chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
   ggtitle("Percentuale di tamponi positivi/tamponi totali")+
   geom_bar(stat="identity", position=position_dodge(), fill = "#F800EB")+
   labs(x = "data", y = "%")+scale_x_date(date_breaks = "8 day",
-                                         date_labels = "%b %d")+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-04-17')))+
+                                         date_labels = "%b %d")+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-04-23')))+
   theme_map()
 
 
@@ -80,7 +80,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                            limits = as.Date(c('2020-02-24','2020-04-23')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -120,7 +120,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-23')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -149,7 +149,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-23')))+
   scale_color_manual(labels = c("nuovi casi totali", "nuovi attualmente positivi"), values=c("#F81608", "#FD6407"))+
   theme_map()
 
@@ -196,7 +196,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-23')))+
   scale_color_manual(labels = c("nuovi guariti", "nuovi deceduti"), values=c("#94D402", "#5F46E4"))+
   theme_map()
 
@@ -256,7 +256,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=casi_totali, color=regione)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                      limits = as.Date(c('2020-02-24','2020-04-23')))+
   scale_color_manual(values=palette)+
   theme_map()
 
@@ -279,22 +279,66 @@ chart5<-ggplotly(chart5) %>%
 
 htmlwidgets::saveWidget(chart5, "chart5.html",  background = "rgba(0,0,0,0.0)")
 
+
+
+
+
 #############################################################
-#### chart 6 grafico sul numero di tamponi e casi totali  ###
+#### chart 6 grafico sul numero degli ospedalizzati#####  ###
 ################# N.B. aggiornare la data####################
 #############################################################
 
-data_chart6<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
-colnames(data_chart6)<-c("data", "casi totali", "tamponi")
-data_chart6<-reshape2::melt(data_chart6, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
+
+data_chart6<-andamento_nazionale[, c("data", "ricoverati_con_sintomi", "terapia_intensiva")]
+colnames(data_chart6)<-c("data", "ricoverati con sintomi", "ricoverati in terapia intensiva")
+data_chart6<-reshape2::melt(data_chart6, id.vars = "data", measure.vars = c("ricoverati con sintomi", "ricoverati in terapia intensiva"))
+
+### creazione del grafico utilizzando ggplot2 ###
+chart6<-ggplot(data=data_chart6, aes(x=data, y=value, color=variable)) +
+  ggtitle("Ospedalizzati (cumulato)")+
+  geom_line()+
+  geom_point(shape = 19, size = 2, stroke = 0.5)+
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "8 day",
+                                                      date_labels = "%b %d",
+                                                      limits = as.Date(c('2020-02-24','2020-04-23')))+
+  scale_color_manual(labels = c("ricoverati con sintomi", "ricoverati in terapia intensiva"), values=c("#E2F705", "#05F9E2"))+
+  theme_map()
+
+### opzioni per la conversione del grafico di ggplot2 in plotly## 
+l <- list(
+  font = list(
+    family = "arial",
+    size = 12,
+    color = "white"),
+  bgcolor = NA,
+  bordercolor = NA,
+  borderwidth = 0,
+  orientation = "h",
+  x = 0.25,
+  y = -0.25)
 
 
-chart6<-ggplot(data=data_chart6, aes(x=data, y=value,fill=variable)) +
+### salvataggio del grafico in html utilizzando la libreria plotly###
+chart6<-ggplotly(chart6) %>%
+  layout(legend = l, title = t)
+
+htmlwidgets::saveWidget(chart6, "chart6.html",  background = "rgba(0,0,0,0.0)")
+#############################################################
+#### chart 7 grafico sul numero di tamponi e casi totali  ###
+################# N.B. aggiornare la data####################
+#############################################################
+
+data_chart7<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
+colnames(data_chart7)<-c("data", "casi totali", "tamponi")
+data_chart7<-reshape2::melt(data_chart7, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
+
+
+chart7<-ggplot(data=data_chart7, aes(x=data, y=value,fill=variable)) +
   ggtitle("Tamponi giornalieri (cumulato)")+
   geom_bar(stat="identity", position=position_dodge())+
   labs(x = "data", y = " ")+scale_x_date(date_breaks = "8 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-04-17')))+
+                                                            limits = as.Date(c('2020-02-24','2020-04-23')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
@@ -310,10 +354,10 @@ chart6<-ggplot(data=data_chart6, aes(x=data, y=value,fill=variable)) +
     x = 0.25,
     y = -0.2)
 
-chart6<-ggplotly(chart6) %>%
+chart7<-ggplotly(chart7) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart6, "chart6.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart7, "chart7.html",  background = "rgba(0,0,0,0.0)")
 
 
 
@@ -336,7 +380,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-04-17`
+regioni_dati<-regioni_dati$`2020-04-23`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province
@@ -385,7 +429,6 @@ writeOGR(regioni_geo_guariti, "webmap/dati/guariti.js", layer="regioni_geo_guari
 writeOGR(regioni_geo_positivi, "webmap/dati/positivi.js", layer="regioni_geo_positivi", driver="GeoJSON", overwrite_layer = T)
 
 writeOGR(province_geo_casi_totali, "webmap/dati/casi_totali_prov.js", layer="province_geo_casi_totali", driver="GeoJSON", overwrite_layer = T)
-
 
 
 

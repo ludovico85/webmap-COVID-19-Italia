@@ -36,7 +36,7 @@ chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
   labs(x = "data", y = "%")+scale_x_date(date_breaks = "10 day",
                                          date_labels = "%b %d")+
-  coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-08')))+
+  coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-10')))+
   theme_map()
 
 
@@ -83,7 +83,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                            limits = as.Date(c('2020-02-24','2020-05-10')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   geom_vline(xintercept =  as.numeric(data_chart1$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -125,7 +125,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-10')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   geom_vline(xintercept =  as.numeric(data_chart2$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -156,7 +156,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-10')))+
   scale_color_manual(labels = c("nuovi casi totali", "nuovi attualmente positivi"), values=c("#F81608", "#FD6407"))+
   geom_vline(xintercept =  as.numeric(data_chart3$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -205,7 +205,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-10')))+
   scale_color_manual(labels = c("nuovi guariti", "nuovi deceduti"), values=c("#94D402", "#5F46E4"))+
   geom_vline(xintercept =  as.numeric(data_chart4$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -267,7 +267,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=casi_totali, color=regione)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-10')))+
   geom_vline(xintercept =  as.numeric(data_chart5$data[316]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
   scale_color_manual(values=palette)+
@@ -313,7 +313,7 @@ chart6<-ggplot(data=data_chart6, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-10')))+
   scale_color_manual(labels = c("ricoverati con sintomi", "ricoverati in terapia intensiva"), values=c("#E2F705", "#05F9E2"))+
   geom_vline(xintercept =  as.numeric(data_chart6$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -353,7 +353,7 @@ chart7<-ggplot(data=data_chart7, aes(x=data, y=value,fill=variable)) +
   geom_bar(stat="identity", position=position_dodge())+
   labs(x = "data", y = " ")+scale_x_date(date_breaks = "10 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-05-08')))+
+                                                            limits = as.Date(c('2020-02-24','2020-05-10')))+
     #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
     theme_map()
 
@@ -395,7 +395,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-05-08`
+regioni_dati<-regioni_dati$`2020-05-10`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province

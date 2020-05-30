@@ -34,21 +34,15 @@ ____
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet.
 Tuttavia è necessario effettuare delle modifiche per aggiornare i grafici e le mappe con i dati giornalieri.
 <b> Grafici </b>
-L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (va ripetuta per tutti i grafici; l'esempio si riferisce al chart 0).
+L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (sostituire in tutti i grafici la data di coord_cartesian).
 <code>
-  chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
-  ggtitle("Percentuale di tamponi positivi/tamponi totali")+
-  geom_bar(stat="identity", position=position_dodge(), fill = "#F800EB")+
-  geom_vline(xintercept =  as.numeric(data_chart0$data[16]), linetype="dashed", color = "red", size = 1)+
-  geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
-  labs(x = "data", y = "%")+scale_x_date(date_breaks = "10 day",
-                                         date_labels = "%b %d")+
-                      coord_cartesian(xlim=as.Date(c(</code><span style="color:blue"'2020-02-24','2020-05-30'</span><code>)))+
-  theme_map()
+[...]+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+[...]
 </code>
 
 <b> Mappe </b>
-L'operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile.
+Sono necessarie due operazioni.
+Nello script di R aggiornare il codice <code>regioni_dati<-regioni_dati$`2020-05-30`</code> con la data più recente.
+Per le mappe l'operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile (utilizzare un editor di testo di Notepd++, Atom, ...).
 Esempio di output di R
 
 <code>

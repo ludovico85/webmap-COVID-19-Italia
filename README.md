@@ -43,7 +43,7 @@ L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
   labs(x = "data", y = "%")+scale_x_date(date_breaks = "10 day",
                                          date_labels = "%b %d")+
-                      coord_cartesian(xlim=as.Date(c(</code><span> style= "color: red">'2020-02-24','2020-05-30'</span><code>)))+
+                      coord_cartesian(xlim=as.Date(c(</code><span style="color:blue"'2020-02-24','2020-05-30'</span><code>)))+
   theme_map()
 </code>
 

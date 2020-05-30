@@ -54,8 +54,9 @@ $.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/d
 		$(".text3a").html(text3a);
 		});
 </script>
-  </code>
-
+</code>
+<br>
+<br>
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet.
 Tuttavia è necessario effettuare delle modifiche per aggiornare i grafici e le mappe con i dati giornalieri.
 <br>
@@ -72,6 +73,9 @@ L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (
 <br>
 <code>[...] labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day", [...]</code>
 <br>
+Nei grafici sono presenti due linee verticali che stanno ad indicare la data d'inizio del lockdown e la data d'inizione della fase 2. Per far apparire correttamente il tooltip bisogna sositutire utilizzando un editor di testo (in seguito ad ogni aggiornamento) all'interno di ogni html (chart0.html, chart1.html e così via) le seguenti stringhe:<br>
+<code>xintercept: 18331</code> con <code>Inizio del lockdown</code><br>
+<code>xintercept: 18386</code> con <code>Inizio della Fase 2</code>
 <br>
 <b> Mappe </b>
 <br>

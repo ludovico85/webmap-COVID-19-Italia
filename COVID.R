@@ -5,6 +5,7 @@ library(tidyr)
 library(plotly)
 library(reshape2)
 library(rjson)
+library(xml2)
 source("custom_theme.R") ##funzione per customizzare l'output di ggplot2 ##
 
 
@@ -34,7 +35,7 @@ chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
   geom_bar(stat="identity", position=position_dodge(), fill = "#F800EB")+
   geom_vline(xintercept =  as.numeric(data_chart0$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
-  labs(x = "data", y = "%")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "%")+scale_x_date(date_breaks = "15 day",
                                          date_labels = "%b %d")+
   coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+
   theme_map()
@@ -81,7 +82,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   ggtitle("Casi totali e attualmente positivi (cumulato)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                             date_labels = "%b %d",
                                                             limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
@@ -124,7 +125,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   ggtitle("Guariti e deceduti (cumulato)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                       date_labels = "%b %d",
                                                       limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
@@ -155,7 +156,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=value, color=variable)) +
   ggtitle("Nuovi casi totali e nuovi attualmente positivi (giornaliero)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                       date_labels = "%b %d",
                                                       limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("nuovi casi totali", "nuovi attualmente positivi"), values=c("#F81608", "#FD6407"))+
@@ -204,7 +205,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=value, color=variable)) +
   ggtitle("Guariti e deceduti (giornaliero)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                       date_labels = "%b %d",
                                                       limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("nuovi guariti", "nuovi deceduti"), values=c("#94D402", "#5F46E4"))+
@@ -266,7 +267,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=casi_totali, color=regione)) +
   ggtitle("Casi totali per regione (cumulato)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                       date_labels = "%b %d",
                                                       limits = as.Date(c('2020-02-24','2020-05-30')))+
   geom_vline(xintercept =  as.numeric(data_chart5$data[316]), linetype="dashed", color = "red", size = 1)+
@@ -312,7 +313,7 @@ chart6<-ggplot(data=data_chart6, aes(x=data, y=value, color=variable)) +
   ggtitle("Ospedalizzati (cumulato)")+
   geom_line()+
   geom_point(shape = 19, size = 2, stroke = 0.5)+
-  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
+  labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "15 day",
                                                       date_labels = "%b %d",
                                                       limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("ricoverati con sintomi", "ricoverati in terapia intensiva"), values=c("#E2F705", "#05F9E2"))+
@@ -400,11 +401,14 @@ regioni_geo_positivi@data$totale_positivi<-as.character(regioni_geo_positivi@dat
 
 province_geo_casi_totali@data$totale_casi<-as.character(province_geo_casi_totali@data$totale_casi)
 
+### eliminazione vecchi files
+file.remove(file.path(paste(getwd(),'/webmap/dati', sep = ""), list.files(paste(getwd(),'/webmap/dati', sep = ""))))
+
+
 ### export in formato geojson js per caricamento in leaflet ###
 writeOGR(regioni_geo_casi_totali, "webmap/dati/casi_totali.js", layer="regioni_geo_casi_totali", driver="GeoJSON", overwrite_layer = T)
 writeOGR(regioni_geo_deceduti, "webmap/dati/deceduti.js", layer="regioni_geo_deceduti", driver="GeoJSON", overwrite_layer = T)
 writeOGR(regioni_geo_guariti, "webmap/dati/guariti.js", layer="regioni_geo_guariti", driver="GeoJSON", overwrite_layer = T)
 writeOGR(regioni_geo_positivi, "webmap/dati/positivi.js", layer="regioni_geo_positivi", driver="GeoJSON", overwrite_layer = T)
-
 writeOGR(province_geo_casi_totali, "webmap/dati/casi_totali_prov.js", layer="province_geo_casi_totali", driver="GeoJSON", overwrite_layer = T)
 

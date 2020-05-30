@@ -43,6 +43,10 @@ L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (
 [...]+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+[...]
 </code>
 <br>
+<b> N.B. </b> Per migliorare la leggibilità dei grafici e in particolare dell'asse X è necessario modificare, ogni volta che si ritiene opportuno, l'intervallo delle etichette dell'asse X. Nello specifico il date_breaks indica l'intervallo temporale delle etichette in asse x.
+<br>
+<code>[...] labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day", [...]</code>
+<br>
 <br>
 <b> Mappe </b>
 <br>

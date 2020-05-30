@@ -31,7 +31,7 @@ Nel REPO sono presenti:
 - colorbrewer scale.txt: scale di colori utilizzate per tematizzare i layer
 ____
 <b> Modifiche necessarie per aggiornare le mappe e i grafici </b><br>
-Per aggiornare i dati giornalieri sui che compaiono nel'header della sidebar laterale è necessario intervenire sull'index.html. Tramite un editor di testo bisogna incrementare di un'unità il numero tra parentesi quadre; Ad esempio il numero 96 si riferisce ai dati del 30 maggio. Per aggiornare al 31 maggio bisogna sostituire il 96 con il 97 e il 95 con il 96.
+Per aggiornare i dati giornalieri che compaiono nell'header della sidebar laterale è necessario intervenire sull'<b>index.html</b>. Tramite un editor di testo bisogna incrementare di un'unità il numero tra parentesi quadre; ad esempio il numero 96 si riferisce ai dati del 30 maggio. Per aggiornare al 31 maggio bisogna sostituire il 96 con il 97 e il 95 con il 96.
 
 <code>
 <script type="text/javascript">
@@ -103,7 +103,7 @@ Modifica necessaria
 <br>
 <br>
 <code>
-var nome_variabile = 
+var nome_variabile =
 {
 "type": "FeatureCollection",
 "name": "regioni_geo_casi_totali",
@@ -115,4 +115,3 @@ var nome_variabile =
 </code>
 <br>
 <br>
-

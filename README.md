@@ -33,16 +33,22 @@ ____
 
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet.
 Tuttavia è necessario effettuare delle modifiche per aggiornare i grafici e le mappe con i dati giornalieri.
+<br>
 <b> Grafici </b>
 L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (sostituire in tutti i grafici la data di coord_cartesian).
+<br>
 <code>
 [...]+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+[...]
 </code>
-
+<br>
 <b> Mappe </b>
+<br>
 Sono necessarie due operazioni.
+<br>
 Nello script di R aggiornare il codice <code>regioni_dati<-regioni_dati$`2020-05-30`</code> con la data più recente.
+<br>
 Per le mappe l'operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile (utilizzare un editor di testo di Notepd++, Atom, ...).
+<br>
 Esempio di output di R
 
 <code>

@@ -47,7 +47,6 @@
 					<iframe src="./chart4.html" width="100%" height="50%" frameborder="0"></iframe>
 					<iframe src="./chart5.html" width="100%" height="80%" frameborder="0"></iframe>
 					<iframe src="./chart6.html" width="100%" height="50%" frameborder="0"></iframe>
-					<iframe src="./chart7.html" width="100%" height="50%" frameborder="0"></iframe>
 				</div>
 			</div>
 			<div id="info">
@@ -84,14 +83,14 @@
 		</script>
 		<script type="text/javascript">
 			$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-	    	var data = `${dati[90].data})`;
-				var text = `Casi totali: ${dati[90].totale_casi}`;
-	      var text2 =`Deceduti: ${dati[90].deceduti}`;
-				var text3 =`Guariti: ${dati[90].dimessi_guariti}`;
-				var text4 =	`Nuovi positivi: ${dati[90].variazione_totale_positivi}`;
-				var text1a = ` (+${dati[90].totale_casi-dati[89].totale_casi})`;
-				var text2a = ` (+${dati[90].deceduti-dati[89].deceduti})`;
-				var text3a = ` (+${dati[90].dimessi_guariti-dati[89].dimessi_guariti})`;
+	    	var data = `${dati[96].data})`;
+				var text = `Casi totali: ${dati[96].totale_casi}`;
+	      var text2 =`Deceduti: ${dati[96].deceduti}`;
+				var text3 =`Guariti: ${dati[96].dimessi_guariti}`;
+				var text4 =	`Nuovi positivi: ${dati[96].variazione_totale_positivi}`;
+				var text1a = ` (+${dati[96].totale_casi-dati[95].totale_casi})`;
+				var text2a = ` (+${dati[96].deceduti-dati[95].deceduti})`;
+				var text3a = ` (+${dati[96].dimessi_guariti-dati[95].dimessi_guariti})`;
 				console.log(text2);
 	      $(".mystat").html(data);
 				$(".text1").html(text);

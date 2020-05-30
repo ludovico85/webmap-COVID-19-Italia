@@ -36,7 +36,7 @@ chart0<-ggplot(data=data_chart0, aes(x=data, y=percentuale)) +
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
   labs(x = "data", y = "%")+scale_x_date(date_breaks = "10 day",
                                          date_labels = "%b %d")+
-  coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-24')))+
+  coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+
   theme_map()
 
 
@@ -63,7 +63,7 @@ t<- list(
 chart0<-ggplotly(chart0) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart0, "chart0.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart0, paste(getwd(),'/webmap/','chart0.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 
 
 ################################################################################
@@ -83,7 +83,7 @@ chart1<-ggplot(data=data_chart1, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                             date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                            limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("totale", "attualmente positivi"), values=c("#F81608", "#FD6407"))+
   geom_vline(xintercept =  as.numeric(data_chart1$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -107,7 +107,8 @@ l <- list(
 chart1<-ggplotly(chart1) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart1, "chart1.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart1, paste(getwd(),'/webmap/','chart1.html', sep = ""),  background = "rgba(0,0,0,0.0)")
+
 
 
 ######################################################################
@@ -125,7 +126,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("guariti", "deceduti"), values=c("#94D402", "#5F46E4"))+
   geom_vline(xintercept =  as.numeric(data_chart2$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -135,7 +136,7 @@ chart2<-ggplot(data=data_chart2, aes(x=data, y=value, color=variable)) +
 chart2<-ggplotly(chart2) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart2, "chart2.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart2, paste(getwd(),'/webmap/','chart2.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 
 ###################################################################################
 ### chart 3 grafico sul numero di attualmente positivi (variazione giornaliera) ###
@@ -156,7 +157,7 @@ chart3<-ggplot(data=data_chart3, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("nuovi casi totali", "nuovi attualmente positivi"), values=c("#F81608", "#FD6407"))+
   geom_vline(xintercept =  as.numeric(data_chart3$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -185,7 +186,7 @@ t<- list(
 chart3<-ggplotly(chart3) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart3, "chart3.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart3, paste(getwd(),'/webmap/','chart3.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 
 ######################################################################
 ### chart 4 grafico sul numero dei guariti e decessi (giornaliero) ###
@@ -205,7 +206,7 @@ chart4<-ggplot(data=data_chart4, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("nuovi guariti", "nuovi deceduti"), values=c("#94D402", "#5F46E4"))+
   geom_vline(xintercept =  as.numeric(data_chart4$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -234,7 +235,7 @@ t<- list(
 chart4<-ggplotly(chart4) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart4, "chart4.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart4, paste(getwd(),'/webmap/','chart4.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 
 
 ##############################################################################
@@ -267,7 +268,7 @@ chart5<-ggplot(data=data_chart5, aes(x=data, y=casi_totali, color=regione)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-30')))+
   geom_vline(xintercept =  as.numeric(data_chart5$data[316]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
   scale_color_manual(values=palette)+
@@ -290,7 +291,7 @@ l <- list(
 chart5<-ggplotly(chart5) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart5, "chart5.html",  background = "rgba(0,0,0,0.0)")
+htmlwidgets::saveWidget(chart5, paste(getwd(),'/webmap/','chart5.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 
 
 
@@ -313,7 +314,7 @@ chart6<-ggplot(data=data_chart6, aes(x=data, y=value, color=variable)) +
   geom_point(shape = 19, size = 2, stroke = 0.5)+
   labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day",
                                                       date_labels = "%b %d",
-                                                      limits = as.Date(c('2020-02-24','2020-05-24')))+
+                                                      limits = as.Date(c('2020-02-24','2020-05-30')))+
   scale_color_manual(labels = c("ricoverati con sintomi", "ricoverati in terapia intensiva"), values=c("#E2F705", "#05F9E2"))+
   geom_vline(xintercept =  as.numeric(data_chart6$data[16]), linetype="dashed", color = "red", size = 1)+
   geom_vline(xintercept =  as.numeric(data_chart0$data[71]), linetype="dashed", color = "yellow", size = 1)+
@@ -337,45 +338,7 @@ l <- list(
 chart6<-ggplotly(chart6) %>%
   layout(legend = l, title = t)
 
-htmlwidgets::saveWidget(chart6, "chart6.html",  background = "rgba(0,0,0,0.0)")
-#############################################################
-#### chart 7 grafico sul numero di tamponi e casi totali  ###
-################# N.B. aggiornare la data####################
-#############################################################
-
-data_chart7<-andamento_nazionale[, c("data", "totale_casi", "tamponi")]
-colnames(data_chart7)<-c("data", "casi totali", "tamponi")
-data_chart7<-reshape2::melt(data_chart7, id.vars = "data", measure.vars = c("casi totali", "tamponi"))
-
-
-chart7<-ggplot(data=data_chart7, aes(x=data, y=value,fill=variable)) +
-  ggtitle("Tamponi giornalieri (cumulato)")+
-  geom_bar(stat="identity", position=position_dodge())+
-  labs(x = "data", y = " ")+scale_x_date(date_breaks = "10 day",
-                                                            date_labels = "%b %d",
-                                                            limits = as.Date(c('2020-02-24','2020-05-24')))+
-    #scale_color_manual(labels = c("casi totali", "tamponi effettuati"))+
-    theme_map()
-
-  l <- list(
-    font = list(
-      family = "arial",
-      size = 12,
-      color = "white"),
-    bgcolor = NA,
-    bordercolor = NA,
-    borderwidth = 0,
-    orientation = "h",
-    x = 0.25,
-    y = -0.2)
-
-chart7<-ggplotly(chart7) %>%
-  layout(legend = l, title = t)
-
-htmlwidgets::saveWidget(chart7, "chart7.html",  background = "rgba(0,0,0,0.0)")
-
-
-
+htmlwidgets::saveWidget(chart6, paste(getwd(),'/webmap/','chart6.html', sep = ""),  background = "rgba(0,0,0,0.0)")
 ###########################################################################################
 ### creazione dati di base per le mappe regionali e provinciali da utilizzare in leaflet###
 ##################### N.B. aggiornare la data##############################################
@@ -395,7 +358,7 @@ province[20,8]<-'NA'
 ### lettura e formattazione dati. N.B. Cambiare la data per aggiornare le mappe###
 regioni_dati<-regioni
 regioni_dati<-split(regioni_dati, regioni_dati$data)
-regioni_dati<-regioni_dati$`2020-05-24`
+regioni_dati<-regioni_dati$`2020-05-30`
 colnames(regioni_dati)[5]<-"DEN_REG"
 
 province_dati<-province

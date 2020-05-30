@@ -30,6 +30,31 @@ Nel REPO sono presenti:
 - webmap: cartella con le librerie e script necessari per la generazione della webmap
 - colorbrewer scale.txt: scale di colori utilizzate per tematizzare i layer
 ____
+<b> Modifiche necessarie per aggiornare le mappe e i grafici </b><br>
+Per aggiornare i dati giornalieri sui che compaiono nel'header della sidebar laterale è necessario intervenire sull'index.html. Tramite un editor di testo bisogna incrementare di un'unità il numero tra parentesi quadre; Ad esempio il numero 96 si riferisce ai dati del 30 maggio. Per aggiornare al 31 maggio bisogna sostituire il 96 con il 97 e il 95 con il 96<br>
+<code>
+  <script type="text/javascript">
+			$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json',     function(dati) {
+	    	var data = `${dati[96].data})`;
+				var text = `Casi totali: ${dati[96].totale_casi}`;
+	      var text2 =`Deceduti: ${dati[96].deceduti}`;
+				var text3 =`Guariti: ${dati[96].dimessi_guariti}`;
+				var text4 =	`Nuovi positivi: ${dati[96].variazione_totale_positivi}`;
+				var text1a = ` (+${dati[96].totale_casi-dati[95].totale_casi})`;
+				var text2a = ` (+${dati[96].deceduti-dati[95].deceduti})`;
+				var text3a = ` (+${dati[96].dimessi_guariti-dati[95].dimessi_guariti})`;
+				console.log(text2);
+	      $(".mystat").html(data);
+				$(".text1").html(text);
+				$(".text2").html(text2);
+				$(".text3").html(text3);
+				$(".text4").html(text4);
+				$(".text1a").html(text1a);
+				$(".text2a").html(text2a);
+				$(".text3a").html(text3a);
+			});
+		</script>
+  </code>
 
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet.
 Tuttavia è necessario effettuare delle modifiche per aggiornare i grafici e le mappe con i dati giornalieri.

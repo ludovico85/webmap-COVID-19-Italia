@@ -81,16 +81,30 @@
       	});
       });
 		</script>
+		<script>
+		/*/$.getJSON("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json", function(json){
+    var myjson = json;
+		console.log(myjson);
+		});/*/
+		var myjson;
+		$.getJSON("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json", function(data){
+			myjson = JSON.stringify(data);
+			var length = Object.keys(myjson).length;
+			console.log(length);
+			/*/alert(result)/*/
+		});
+		/*/var obj = JSON.parse(myjson);/*/
+	</script>
 		<script type="text/javascript">
 			$.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json', function(dati) {
-	    	var data = `${dati[96].data})`;
-				var text = `Casi totali: ${dati[96].totale_casi}`;
-	      var text2 =`Deceduti: ${dati[96].deceduti}`;
-				var text3 =`Guariti: ${dati[96].dimessi_guariti}`;
-				var text4 =	`Nuovi positivi: ${dati[96].variazione_totale_positivi}`;
-				var text1a = ` (+${dati[96].totale_casi-dati[95].totale_casi})`;
-				var text2a = ` (+${dati[96].deceduti-dati[95].deceduti})`;
-				var text3a = ` (+${dati[96].dimessi_guariti-dati[95].dimessi_guariti})`;
+	    	var data = `${dati[98].data})`;
+				var text = `Casi totali: ${dati[98].totale_casi}`;
+	      var text2 =`Deceduti: ${dati[98].deceduti}`;
+				var text3 =`Guariti: ${dati[98].dimessi_guariti}`;
+				var text4 =	`Nuovi positivi: ${dati[98].variazione_totale_positivi}`;
+				var text1a = ` (+${dati[98].totale_casi-dati[97].totale_casi})`;
+				var text2a = ` (+${dati[98].deceduti-dati[97].deceduti})`;
+				var text3a = ` (+${dati[98].dimessi_guariti-dati[97].dimessi_guariti})`;
 				console.log(text2);
 	      $(".mystat").html(data);
 				$(".text1").html(text);

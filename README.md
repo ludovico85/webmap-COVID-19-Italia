@@ -4,9 +4,7 @@ Webmap con statistiche sulla diffusione del COVID-19 sul territorio nazionale
 <p><a href="https://github.com/ludovico85/webmap-COVID-19-Italia/blob/master/License.txt"><img src="https://camo.githubusercontent.com/b9e61d4d8db6ffad34c4367d2fa7089993491ce7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4372656174697665253230436f6d6d6f6e732532304174747269627574696f6e253230342e30253230496e7465726e6174696f6e616c2d626c7565" alt="GitHub license" data-canonical-src="https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue" style="max-width:100%;"></a>
 <a href="https://github.com/ludovico85/webmap-COVID-19-Italia/commits/master"><img src="https://camo.githubusercontent.com/f5f7431cfccb2ebed2649bb2e2ab87ddc4659461/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6173742d636f6d6d69742f70636d2d6470632f434f5649442d3139" alt="GitHub commit" data-canonical-src="https://img.shields.io/github/last-commit/pcm-dpc/COVID-19" style="max-width:100%;"></a></p>
 
-<img src="https://www.lezionigis.it/wp-content/uploads/2020/03/Cattura.png" height="100%" width="100%">
-
-La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://www.lezionigis.it/mappa-di-diffusione-del-covid-19-sul-territorio-italiano/ ,
+La webmap, realizzata da <a href="http://www.lezionigis.it" target="_blank">LezioniGIS.it</a> e consultabile all'indirizzo https://ludovico85.github.io/webmap-COVID-19-Italia/,
 mostra le mappe e i grafici di diffusione del COVID-19 sul territorio nazionale.
 L'intera applicazione è stata sviluppata utilizzando software OpenSource:
 
@@ -33,7 +31,7 @@ ____
 <b> Modifiche necessarie per aggiornare le mappe e i grafici </b><br>
 Per aggiornare i dati giornalieri che compaiono nell'header della sidebar laterale è necessario intervenire sull'<b>index.html</b>. Tramite un editor di testo bisogna incrementare di un'unità il numero tra parentesi quadre; ad esempio il numero 96 si riferisce ai dati del 30 maggio. Per aggiornare al 31 maggio bisogna sostituire il 96 con il 97 e il 95 con il 96.
 
-<code>
+```
 <script type="text/javascript">
 $.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json',     function(dati) {
 	    	var data = `${dati[96].data})`;
@@ -54,40 +52,41 @@ $.getJSON('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/d
 		$(".text3a").html(text3a);
 		});
 </script>
-</code>
-<br>
-<br>
+```
+
+
 Lo script di R è completamente automatizzato per creare i grafici e gli script javascript per le mappe da utilizzare in leaflet.
 Tuttavia è necessario effettuare delle modifiche per aggiornare i grafici e le mappe con i dati giornalieri.
-<br>
-<br>
+
+
 <b> Grafici </b>
-<br>
+
+
 L'operazione consiste nell'aggiornare la data ultima per la selezione dei dati (sostituire in tutti i grafici la data di coord_cartesian).
 <br>
-<code>
+```
 [...]+coord_cartesian(xlim=as.Date(c('2020-02-24','2020-05-30')))+[...]
-</code>
+```
 <br>
 <b> N.B. </b> Per migliorare la leggibilità dei grafici e in particolare dell'asse X è necessario modificare, ogni volta che si ritiene opportuno, l'intervallo delle etichette dell'asse X. Nello specifico il date_breaks indica l'intervallo temporale delle etichette in asse x.
-<br>
-<code>[...] labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day", [...]</code>
-<br>
+
+```[...] labs(x = "data", y = "numero di casi")+scale_x_date(date_breaks = "10 day", [...]```
+
 Nei grafici sono presenti due linee verticali che stanno ad indicare la data d'inizio del lockdown e la data d'inizione della fase 2. Per far apparire correttamente il tooltip bisogna sositutire utilizzando un editor di testo (in seguito ad ogni aggiornamento) all'interno di ogni html (chart0.html, chart1.html e così via) le seguenti stringhe:<br>
-<code>xintercept: 18331</code> con <code>Inizio del lockdown</code><br>
-<code>xintercept: 18386</code> con <code>Inizio della Fase 2</code>
-<br>
+```xintercept: 18331</code> con <code>Inizio del lockdown```
+```xintercept: 18386</code> con <code>Inizio della Fase 2```
+
 <b> Mappe </b>
-<br>
+
 Sono necessarie due operazioni.
-<br>
-Nello script di R aggiornare il codice <code>regioni_dati<-regioni_dati$`2020-05-30`</code> con la data più recente.
-<br>
-Per le mappe l'operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile (utilizzare un editor di testo di Notepd++, Atom, ...).
-<br>
+
+1) Nello script di R aggiornare il codice <code>regioni_dati<-regioni_dati$`2020-05-30`</code> con la data più recente.
+
+2) Per le mappe l'operazione da fare consiste nel dichiarare, all'inizio dei file javascript contenuti nella cartella dati che costituiscono le mappe, la variabile (utilizzare un editor di testo di Notepd++, Atom, ...).
+
 Esempio di output di R
 
-<code>
+```
 {
 "type": "FeatureCollection",
 "name": "regioni_geo_casi_totali",
@@ -96,13 +95,10 @@ Esempio di output di R
 { "type": "Feature", "id": 14, "properties": { "DEN_REG": "Molise", "COD_REG": "14", "totale_casi": "17" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ ... ] ] ] } },
 ]
 }
-</code>
-<br>
-<br>
+```
 Modifica necessaria
-<br>
-<br>
-<code>
+
+```
 var nome_variabile =
 {
 "type": "FeatureCollection",
@@ -112,6 +108,4 @@ var nome_variabile =
 { "type": "Feature", "id": 14, "properties": { "DEN_REG": "Molise", "COD_REG": "14", "totale_casi": "17" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ ... ] ] ] } },
 ]
 }
-</code>
-<br>
-<br>
+```
